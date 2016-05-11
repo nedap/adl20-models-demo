@@ -216,5 +216,12 @@
     "path" : "archetypes/openEHR-EHR-SECTION.medication.v1.adls",
     "sha" : "d379bcf36aa1293b122d305a3daa87b3647ada0f",
     "languages" : [ "en" ]
+  }, {
+    "id" : "openEHR-EHR-SECTION.soap.v1.0.0",
+    "rmType" : "SECTION",
+    "name" : "SOAP",
+    "path" : "archetypes/openEHR-EHR-SECTION.soap.v1.adls",
+    "sha" : "50d637b0d5fe7cdd3c6ca26f976e7b0ad50ce628",
+    "languages" : [ "en" ]
   } ]
 }
