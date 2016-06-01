@@ -7,8 +7,8 @@ language
 		["de"] = <
 			language = <[ISO_639-1::de]>
 			author = <
-				["organisation"] = <"Helmholtz Zentrum München">
 				["name"] = <"Hans Demski">
+				["organisation"] = <"Helmholtz Zentrum München">
 				["email"] = <"demski@helmholtz-muenchen.de">
 			>
 		>
@@ -22,7 +22,7 @@ description
 		["email"] = <"ian.mcnicoll@oceaninformatics.com">
 		["date"] = <"12/11/2007">
 	>
-	copyright = <"copyright (c) 2010 openEHR Foundation">
+	copyright = <"copyright (c) 2010 openEHR foundation">
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
@@ -47,20 +47,20 @@ Nicht zur Identifikation von Einrichtungen zu benutzen, die eindeutig Registern 
 	other_contributors = <"Heather Leslie, Ocean Informatics, Australia", ...>
 	other_details = <
 		["references"] = <"From NHS Scotland SCI-XML messaging standards http://www.isdscotland.org/isd/files/general-v2-7.xsd NHS Scotland Interoperability Working Group http://www.isdscotland.org/isd/5194.html">
-		["MD5-CAM-1.0.1"] = <"B662A0F6C49F3E1974AADFF3B0D45B02">
+		["MD5-CAM-1.0.1"] = <"B932A22934CC38489610A47273A86DA8">
 	>
 
 definition
 	CLUSTER[id1] matches {	-- Organisation
 		items matches {
-			ELEMENT[id2] occurrences matches {0..1} matches {	-- Name of Organisation
+			ELEMENT[id2] matches {	-- Name of Organisation
 				value matches {
-					DV_TEXT[id14] 
+					DV_TEXT[id13] 
 				}
 			}
 			ELEMENT[id12] occurrences matches {0..1} matches {	-- Identifier
 				value matches {
-					DV_TEXT[id15] 
+					DV_TEXT[id14] 
 				}
 			}
 			allow_archetype CLUSTER[id9] occurrences matches {0..1} matches {	-- Address details
@@ -73,14 +73,9 @@ definition
 				include
 					archetype_id/value matches {/openEHR-EHR-CLUSTER\.telecom_details\.v1/}
 			}
-			ELEMENT[id13] occurrences matches {0..1} matches {	-- Contact person name
-				value matches {
-					DV_TEXT[id16] 
-				}
-			}
-			CLUSTER[id6] occurrences matches {0..1} matches {	-- Contact person detail
+			CLUSTER[id6] occurrences matches {0..*} matches {	-- Contact Person Details
 				items matches {
-					allow_archetype CLUSTER[id11] matches {	-- Contact person's name
+					allow_archetype CLUSTER[id11] occurrences matches {0..*} matches {	-- Contact person's name
 						include
 							archetype_id/value matches {/openEHR-EHR-CLUSTER\.person_name\.v1/}
 						exclude
@@ -88,7 +83,7 @@ definition
 					}
 					ELEMENT[id8] occurrences matches {0..1} matches {	-- Role in organisation
 						value matches {
-							DV_TEXT[id17] 
+							DV_TEXT[id15] 
 						}
 					}
 				}
@@ -108,7 +103,7 @@ terminology
 				description = <"Name of the organisation">
 			>
 			["id6"] = <
-				text = <"Contact person detail">
+				text = <"Contact Person Details">
 				description = <"Details about contact person within organisation">
 			>
 			["id8"] = <
@@ -131,10 +126,6 @@ terminology
 				text = <"Identifier">
 				description = <"Identifier of organisation">
 			>
-			["id13"] = <
-				text = <"Contact person name">
-				description = <"Name of a person to contact at the organisation.">
-			>
 		>
 		["de"] = <
 			["id1"] = <
@@ -146,8 +137,8 @@ terminology
 				description = <"Name der Einrichtung">
 			>
 			["id6"] = <
-				text = <"*Contact person detail(en)">
-				description = <"*Details about contact person within organisation(en)">
+				text = <"Kontaktperson">
+				description = <"Angaben zur Kontaktperson innerhalb der Einrichtung">
 			>
 			["id8"] = <
 				text = <"Rolle der Kontaktperson">
@@ -168,48 +159,6 @@ terminology
 			["id12"] = <
 				text = <"*New element(en)">
 				description = <"**(en)">
-			>
-			["id13"] = <
-				text = <"*Contact person name(en)">
-				description = <"*Name of a person to contact at the organisation.(en)">
-			>
-		>
-		["sl"] = <
-			["id1"] = <
-				text = <"*Organisation(en)">
-				description = <"*Details of an organisation (en)">
-			>
-			["id2"] = <
-				text = <"*Name of Organisation(en)">
-				description = <"*Name of the organisation(en)">
-			>
-			["id6"] = <
-				text = <"*Contact person detail(en)">
-				description = <"*Details about contact person within organisation(en)">
-			>
-			["id8"] = <
-				text = <"*Role in organisation(en)">
-				description = <"*Contact's role in organisation(en)">
-			>
-			["id9"] = <
-				text = <"*Address details(en)">
-				description = <"*Details about Address(en)">
-			>
-			["id10"] = <
-				text = <"*Telecom details(en)">
-				description = <"*Details about telecommunications(en)">
-			>
-			["id11"] = <
-				text = <"*Contact person's name(en)">
-				description = <"**(en)">
-			>
-			["id12"] = <
-				text = <"*Identifier(en)">
-				description = <"*Identifier of organisation(en)">
-			>
-			["id13"] = <
-				text = <"*Contact person name(en)">
-				description = <"*Name of a person to contact at the organisation.(en)">
 			>
 		>
 	>

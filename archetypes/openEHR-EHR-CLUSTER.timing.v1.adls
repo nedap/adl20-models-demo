@@ -16,11 +16,11 @@ description
 	lifecycle_state = <"unmanaged">
 	original_author = <
 		["name"] = <"Sam Heard">
-		["organisation"] = <"NEHTA">
+		["organisation"] = <"openEHR Foundation">
 		["email"] = <"sam.heard@oceaninformatics.com">
-		["date"] = <"12/11/2010">
+		["date"] = <"2013-05-16">
 	>
-	copyright = <"© National E-Health Transition Authority">
+	copyright = <"© openEHR Foundation">
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
@@ -31,14 +31,16 @@ description
 		>
 		["sl"] = <
 			language = <[ISO_639-1::sl]>
-			purpose = <"">
-			use = <"">
-			misuse = <"">
+			purpose = <"*To provide structured information on timing that is suitable for computation and display for human interpretation.(en)">
+			use = <"*For use with medication orders and other instructions where timing is complex and needs to be computable.(en)">
+			keywords = <"*timing(en)", "*administration(en)", "*dosing(en)", "*frequency(en)">
+			misuse = <"*Not to be used for specific timing but for scheduling of tasks that need repeating.(en)">
 		>
 	>
 	other_contributors = <"Sharmila Biswas, Dr Sharmila Biswas, Australia", "Stephen Chu, NEHTA, Australia (Editor)", "David Evans, Queensland Health, Australia", "Sam Heard, Ocean Informatics, Australia (Editor)", "Heather Leslie, Ocean Informatics, Australia (Editor)", "Richard Townley-O'Neill, NEHTA, Australia (Editor)">
 	other_details = <
-		["MD5-CAM-1.0.1"] = <"DAC5C8B600F40192D61815E52FA94908">
+		["references"] = <"Timing, draft archetype, NEHTA Clinical Knowledge Manager [Internet]. : NEHTA. Authored: 21 Nov 2010. Available at: http://dcm.nehta.org.au/ckm/#showArchetype_1013.1.886_4 (accessed 15 May 2013).">
+		["MD5-CAM-1.0.1"] = <"EFBA7E8A2D9F5834E80C40F5A2E119E1">
 	>
 
 definition
@@ -46,12 +48,12 @@ definition
 		items matches {
 			ELEMENT[id2] occurrences matches {0..1} matches {	-- Daily count
 				value matches {
-					DV_COUNT[id23] 
+					DV_COUNT[id24] 
 				}
 			}
 			ELEMENT[id4] occurrences matches {0..1} matches {	-- Frequency
 				value matches {
-					DV_QUANTITY[id24] matches {
+					DV_QUANTITY[id25] matches {
 						property matches {[at15]}
 						[magnitude, units] matches {
 							[{|>=0.0|}, {"/d"}],
@@ -67,19 +69,19 @@ definition
 			}
 			ELEMENT[id15] occurrences matches {0..1} matches {	-- Interval
 				value matches {
-					DV_DURATION[id25] 
+					DV_DURATION[id26] 
 				}
 			}
 			CLUSTER[id16] occurrences matches {0..1} matches {	-- Variable frequency
 				items matches {
 					CLUSTER[id17] occurrences matches {0..1} matches {	-- Upper
 						items matches {
-							use_node ELEMENT[id26] occurrences matches {0..1} /items[id4]	-- /items[Frequency]
+							use_node ELEMENT[id27] occurrences matches {0..1} /items[id4]	-- /items[Frequency]
 						}
 					}
 					CLUSTER[id18] occurrences matches {0..1} matches {	-- Lower
 						items matches {
-							use_node ELEMENT[id27] occurrences matches {0..1} /items[id4]	-- /items[Frequency]
+							use_node ELEMENT[id28] occurrences matches {0..1} /items[id4]	-- /items[Frequency]
 						}
 					}
 				}
@@ -88,38 +90,45 @@ definition
 				items matches {
 					CLUSTER[id21] occurrences matches {0..1} matches {	-- Upper
 						items matches {
-							use_node ELEMENT[id28] occurrences matches {0..1} /items[id15]	-- /items[Interval]
+							use_node ELEMENT[id29] occurrences matches {0..1} /items[id15]	-- /items[Interval]
 						}
 					}
 					CLUSTER[id22] occurrences matches {0..1} matches {	-- Lower
 						items matches {
-							use_node ELEMENT[id29] occurrences matches {0..1} /items[id15]	-- /items[Interval]
+							use_node ELEMENT[id30] occurrences matches {0..1} /items[id15]	-- /items[Interval]
 						}
 					}
 				}
 			}
-			ELEMENT[id5] matches {	-- Time
+			ELEMENT[id5] occurrences matches {0..*} matches {	-- Specific time
 				value matches {
-					DV_TIME[id30] 
+					DV_TIME[id31] 
 				}
 			}
-			ELEMENT[id7] matches {	-- Day of week
+			ELEMENT[id7] occurrences matches {0..*} matches {	-- Day of week
 				value matches {
-					DV_CODED_TEXT[id31] matches {
+					DV_CODED_TEXT[id32] matches {
 						defining_code matches {[ac1]}		-- Day of week (synthesised)
 					}
 				}
 			}
-			ELEMENT[id6] matches {	-- Day of month
+			ELEMENT[id6] occurrences matches {0..*} matches {	-- Day of month
 				value matches {
-					DV_COUNT[id32] matches {
+					DV_COUNT[id33] matches {
 						magnitude matches {|1..31|}
 					}
 				}
 			}
-			ELEMENT[id19] matches {	-- Date
+			ELEMENT[id19] occurrences matches {0..*} matches {	-- Specific date
 				value matches {
-					DV_DATE[id33] 
+					DV_DATE[id34] 
+				}
+			}
+			ELEMENT[id23] occurrences matches {0..1} matches {	-- Parsable syntax
+				value matches {
+					DV_PARSABLE[id35] matches {
+						formalism matches {"text/xml", "text/plain"}
+					}
 				}
 			}
 		}
@@ -141,7 +150,7 @@ terminology
 				description = <"The frequency as number of times per time period that the intervention is to take place.">
 			>
 			["id5"] = <
-				text = <"Time">
+				text = <"Specific time">
 				description = <"Specific time(s) during the day when the intervention should be applied.">
 			>
 			["id6"] = <
@@ -197,8 +206,8 @@ terminology
 				description = <"The lower value of frequency.">
 			>
 			["id19"] = <
-				text = <"Date">
-				description = <"Actual dates.">
+				text = <"Specific date">
+				description = <"A specific date when the intervention is to take place.">
 			>
 			["id20"] = <
 				text = <"Variable interval">
@@ -212,13 +221,13 @@ terminology
 				text = <"Lower">
 				description = <"The lower value of the interval.">
 			>
+			["id23"] = <
+				text = <"Parsable syntax">
+				description = <"Complex intervention timing recorded as a parsable syntax.">
+			>
 			["at15"] = <
 				text = <"Frequency">
 				description = <"Frequency">
-			>
-			["id26"] = <
-				text = <"(added by post-parse processor)">
-				description = <"(added by post-parse processor)">
 			>
 			["id27"] = <
 				text = <"(added by post-parse processor)">
@@ -229,6 +238,10 @@ terminology
 				description = <"(added by post-parse processor)">
 			>
 			["id29"] = <
+				text = <"(added by post-parse processor)">
+				description = <"(added by post-parse processor)">
+			>
+			["id30"] = <
 				text = <"(added by post-parse processor)">
 				description = <"(added by post-parse processor)">
 			>
@@ -308,7 +321,7 @@ terminology
 			>
 			["id19"] = <
 				text = <"Datum">
-				description = <"*Actual dates.(en)">
+				description = <"*A specific date when the intervention is to take place.(en)">
 			>
 			["id20"] = <
 				text = <"Spremenljiv interval">
@@ -322,13 +335,13 @@ terminology
 				text = <"Nižji">
 				description = <"*The lower value of the interval.(en)">
 			>
+			["id23"] = <
+				text = <"*Parsable syntax(en)">
+				description = <"*Complex intervention timing recorded as a parsable syntax.(en)">
+			>
 			["at15"] = <
 				text = <"*Frequency (en)">
 				description = <"*Frequency (en)">
-			>
-			["id26"] = <
-				text = <"*(added by post-parse processor)(en)">
-				description = <"*(added by post-parse processor)(en)">
 			>
 			["id27"] = <
 				text = <"*(added by post-parse processor)(en)">
@@ -339,6 +352,10 @@ terminology
 				description = <"*(added by post-parse processor)(en)">
 			>
 			["id29"] = <
+				text = <"*(added by post-parse processor)(en)">
+				description = <"*(added by post-parse processor)(en)">
+			>
+			["id30"] = <
 				text = <"*(added by post-parse processor)(en)">
 				description = <"*(added by post-parse processor)(en)">
 			>

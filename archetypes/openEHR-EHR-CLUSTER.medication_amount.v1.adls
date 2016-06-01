@@ -12,19 +12,19 @@ description
 		["email"] = <"ian.mcnicoll@oceaninformatics.com">
 		["date"] = <"2012-12-03">
 	>
-	copyright = <"">
+	copyright = <"© openEHR Foundation">
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"To describe the amount or strength of a substance for reuse in different ENTRY classes.">
-			use = <"In INSTRUCTION medication, ACTION medication for amount ordered, dispensed, administered.">
-			keywords = <"amount", "dose", "dosing">
+			purpose = <"To describe the quantity or strength of a medicinal substance.">
+			use = <"Normally used in the context of medication INSRUCTION or ACTION archetypes.">
+			keywords = <"amount", "dose", "dosing", "quantity", "strength">
 			misuse = <"">
 		>
 	>
 	other_contributors = <"Sam Heard, Ocean Informatics, Australia", ...>
 	other_details = <
-		["MD5-CAM-1.0.1"] = <"2F70C9113B7CBAFBFFB4455B12FEEC14">
+		["MD5-CAM-1.0.1"] = <"2EE9A6D534B48D4795756F3ECFCDE0DF">
 	>
 
 definition
@@ -35,15 +35,21 @@ definition
 					DV_QUANTITY[id10] matches {
 						property matches {[at1]}
 						magnitude matches {|>=0.0|}
+						units matches {"1"}
 					}
 					DV_INTERVAL<DV_QUANTITY>[id11] matches {
 						upper matches {
-							DV_QUANTITY[id12] 
+							DV_QUANTITY[id12] matches {
+								property matches {[at1]}
+								magnitude matches {|>=0.0|}
+								units matches {"1"}
+							}
 						}
 						lower matches {
 							DV_QUANTITY[id13] matches {
 								property matches {[at1]}
 								magnitude matches {|>=0.0|}
+								units matches {"1"}
 							}
 						}
 					}
@@ -61,13 +67,13 @@ definition
 					DV_TEXT[id15] 
 				}
 			}
-			CLUSTER[id9] occurrences matches {0..1} matches {	-- Ratio numerator
+			CLUSTER[id9] occurrences matches {0..1} matches {	-- Ratio amount numerator
 				items matches {
 					use_node ELEMENT[id16] occurrences matches {0..1} /items[id2]	-- /items[Amount]
 					use_node ELEMENT[id17] occurrences matches {0..1} /items[id3]	-- /items[Dose unit]
 				}
 			}
-			CLUSTER[id8] occurrences matches {0..1} matches {	-- Ratio denominator
+			CLUSTER[id8] occurrences matches {0..1} matches {	-- Ratio amount denominator
 				items matches {
 					use_node ELEMENT[id18] occurrences matches {0..1} /items[id2]	-- /items[Amount]
 					use_node ELEMENT[id19] occurrences matches {0..1} /items[id3]	-- /items[Dose unit]
@@ -85,7 +91,7 @@ terminology
 			>
 			["id2"] = <
 				text = <"Amount">
-				description = <"The value of the amount of medication as a real number e.g 1, 1.5, 0.125. ">
+				description = <"The value of the amount of medication as a real number.">
 			>
 			["id3"] = <
 				text = <"Dose unit">
@@ -96,12 +102,12 @@ terminology
 				description = <"Free text description of the amount which may consist of the amount value and amount dose unit.">
 			>
 			["id8"] = <
-				text = <"Ratio denominator">
-				description = <"The denominator value where the amount is described as a ratio e.g. 5mls where the amount is 2mg/ 5mls.">
+				text = <"Ratio amount denominator">
+				description = <"The denominator value where the amount is described as a ratio e.g. 5mls where the amount is 2mg/5mls.">
 			>
 			["id9"] = <
-				text = <"Ratio numerator">
-				description = <"The numerator value where the amount is described as a ratio e.g. 2mg where the amount is 2mg/ 5mls.">
+				text = <"Ratio amount numerator">
+				description = <"The numerator value where the amount is described as a ratio e.g. 2mg where the amount is 2mg/5mls.">
 			>
 			["ac2"] = <
 				text = <"Dose Unit">
@@ -146,12 +152,12 @@ terminology
 				description = <"*Free text description of the amount which may consist of the amount value and amount dose unit.(en)">
 			>
 			["id8"] = <
-				text = <"*Ratio denominator(en)">
-				description = <"*The denominator value where the amount is described as a ratio e.g. 5mls where the amount is 2mg/ 5mls.(en)">
+				text = <"*Ratio amount denominator(en)">
+				description = <"*The denominator value where the amount is described as a ratio e.g. 5mls where the amount is 2mg/5mls.(en)">
 			>
 			["id9"] = <
-				text = <"*Ratio numerator(en)">
-				description = <"*The numerator value where the amount is described as a ratio e.g. 2mg where the amount is 2mg/ 5mls.(en)">
+				text = <"*Ratio amount numerator(en)">
+				description = <"*The numerator value where the amount is described as a ratio e.g. 2mg where the amount is 2mg/5mls.(en)">
 			>
 			["ac2"] = <
 				text = <"*Dose Unit(en)">
