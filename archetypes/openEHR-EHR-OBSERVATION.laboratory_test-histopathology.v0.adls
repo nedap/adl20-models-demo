@@ -1,0 +1,278 @@
+archetype (adl_version=2.0.5; rm_release=1.0.2; generated; uid=69dfbb94-5540-47c4-b9eb-be25849b1890)
+	openEHR-EHR-OBSERVATION.laboratory_test-histopathology.v0.0.1-alpha
+
+specialize
+	openEHR-EHR-OBSERVATION.laboratory_test.v0
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["ar-sy"] = <
+			language = <[ISO_639-1::ar-sy]>
+			author = <
+				["name"] = <"Mona Saleh">
+			>
+		>
+	>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Ian McNicoll">
+		["organisation"] = <"freshEHR Clinical Informatics">
+		["email"] = <"ian@freshehr.com">
+		["date"] = <"2014-10-15">
+	>
+	original_namespace = <"org.openehr">
+	original_publisher = <"openEHR Foundation">
+	custodian_namespace = <"org.openehr">
+	custodian_organisation = <"openEHR Foundation">
+	licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+	details = <
+		["ar-sy"] = <
+			language = <[ISO_639-1::ar-sy]>
+			purpose = <"لتسجيل نتيجة اختبار المعمل, و التي قد يتم استخدامها لتسجيل اختبار ذي قيمة واحدة, و عادة ما يتم بعد ذلك المزيد من التخصيص أو الوضع في قالب لتمثيل اختبار متعدد القيم أو رتل من الاختبارات. 
+و يمثل هذا النموذج كوالد (أب) للتخصيصات الأخرى لاختبارات معملية أكثر تحديدا مثل الميكروبيولوجيا و الهيستوباثولوجيا.">
+			use = <"قد يستخدم لتسجيل نتيجة اختبار المعمل, و التي قد يتم استخدامها لتسجيل اختبار ذي قيمة واحدة, و عادة ما يتم بعد ذلك المزيد من التخصيص أو الوضع في قالب لتمثيل اختبار متعدد القيم أو رتل من الاختبارات. 
+
+يتم بعد ذلك تقديم التقرير للطبيب السريري الذي قام بطلب الاختبار في سياق تقرير معملي متكامل.">
+			keywords = <"المعمل - المختبر", "الباثولوجيا - المرضية", "الكيمياء الحيوية", "الدمويات", "الميكروبيولوجيا", "المناعيات - علم المناعة">
+			misuse = <"قد تكون التخصيصات أكثر مناسبة للتقارير المركبة مثل حالات الميكروبيولوجيا أو الهيستوباثولوجيا.">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the findings and interpretation of histopathology (anatomic pathology) tests performed on tissues and body fluids.">
+			use = <"Use to record any histopathology  test result, including intra-operative, microscopic, macroscopic examinations of tissue.
+
+Detailed structured findings are captured within child cluster archetypes.
+ 
+Ancillary laboratory tests may also be captured via the Ancillary Laboratory Test Findings slot.
+
+Will normally be reported back to the requesting clinician as one component within the context of an overall COMPOSITION-based report.">
+			keywords = <"lab", "pathology", "biochemistry", "haematology", "microbiology", "immunology", "laboratory", "anatomical", "chemical", "clinical", "immunopathology", "cytology", "histopathology", "test", "biopsy", "specimen", "forensic", "genetic">
+			misuse = <"Not to be used for reporting on non-histopathology test results e.g. biochemistry or haematology tests.
+
+Not to be used to represent an entire cumulative report. This laboratory test result archetype represents only one of the result sets that is usually viewed as a vertical in a cumulative test report. A cumulative report is a view that is constructed from the results represented by multiple OBSERVATION archetypes.
+
+Not to be used to record an Autopsy report, although tests on some specimens that are taken at autopsy may be represented using this archetype.">
+		>
+	>
+	other_contributors = <"Koray Atalag, University of Auckland, New Zealand", "Sharmila Biswas, Dr Sharmila Biswas GP, Australia", "Doug Chesher, PaLMS, Australia", "Stephen Chu, NEHTA, Australia (Editor)", "Matthew Cordell, NEHTA, Australia", "Andre de Wolf, NeHTA, Australia", "Gail Easterbrook, Flinders Medical Centre, Australia", "David Evans, Queensland Health, Australia", "Shahla Foozonkhah, Ocean Informatics, Australia", "Heath Frankel, Ocean Informatics, Australia", "Grahame Grieve, Health Intersections Pyty Ltd, Australia (Editor)", "Sam Heard, Ocean Informatics, Australia", "Mary Kelaher, NEHTA, Australia", "Michael Legg, Michael Legg & associates, Australia", "Heather Leslie, Ocean Informatics, Australia (Editor)", "Mike Martyn, The Hobart Anaesthetic Group, Australia", "Andrew McIntyre, Medical-Objects, Australia", "David McKillop, NEHTA, Australia", "Ian McNicoll, Ocean Informatics UK, United Kingdom", "Chris Mitchell, RACGP, Australia", "Stewart Morrison, NEHTA, Australia", "Michael Osborne, Mater Health Services, Australia", "Kyle Shore, Charm Health, Australia", "Michael Thompson, Queensland Health, Australia", "Gordon Tomes, Australian Institute of Health and Welfare, Australia", "Richard Townley-O'Neill, NEHTA, Australia", "David Rowed, VAMC Clinic, Australia (Editor)", "Mona Saleh (Translator)">
+	other_details = <
+		["references"] = <"Based on NEHTA 'Pathology Test' archetype. Available from: http://dcm.nehta.org.au/ckm/OKM.html#showarchetype_1013.1.839_8
+
+Pathology (Data Specifications) Version 1.0 [Internet]. Sydney, Australia: National E-Health Transition Authority; 2007 May 29 [cited 2011 Jul 11]; Available at http://www.nehta.gov.au/component/docman/doc_download/962-pathology-v10.
+
+Laboratory Technical Framework, Volume 3: Content, Revision 3.0 [Internet]. USA: IHE International; 2011 May 19; [cited 2011 Jul 11]. Available from: http://www.ihe.net/Technical_Framework/index.cfm#laboratory
+
+Hl7 FHIR Diagnostic Report resource: HL7 FHIR; Available from http://www.hl7.org/implement/standards/fhir/diagnosticreport.html">
+		["build_uid"] = <"c38d34e4-0249-42f0-b6f7-cf463047604a">
+		["MD5-CAM-1.0.1"] = <"8DF43DCA388FB6E507261353FF09FBF3">
+	>
+
+definition
+	OBSERVATION[id1.1] matches {	-- Histopathology test
+		/data[id2]/events cardinality matches {1..*; unordered} matches {
+			EVENT[id3] occurrences matches {0..*} matches {
+				data matches {
+					ITEM_TREE[id4] matches {
+						items cardinality matches {3..*; unordered} matches {
+							CLUSTER[id0.118] occurrences matches {0..*} matches {	-- Histopathology findings
+								name matches {
+									DV_CODED_TEXT[id0.131] matches {
+										defining_code matches {[ac0.1]}		-- Histopathology findings (synthesised)
+									}
+								}
+								items matches {
+									CLUSTER[id0.123] occurrences matches {0..*} matches {	-- Histopathology finding
+										items matches {
+											ELEMENT[id0.124] occurrences matches {0..1} matches {	-- Tissue available
+												value matches {
+													DV_BOOLEAN[id0.132] matches {
+														value matches {True, False}
+													}
+												}
+											}
+											allow_archetype CLUSTER[id0.125] occurrences matches {0..*} matches {	-- Specimen detail
+												include
+													archetype_id/value matches {/openEHR-EHR-CLUSTER\.specimen(-a-zA-Z0-9_]+)*\.v1/}
+											}
+											ELEMENT[id0.126] occurrences matches {0..1} matches {	-- Description
+												value matches {
+													DV_TEXT[id0.133] 
+												}
+											}
+											allow_archetype CLUSTER[id0.127] occurrences matches {0..*} matches {	-- Structured findings
+												include
+													archetype_id/value matches {/.*/}
+											}
+											ELEMENT[id0.128] occurrences matches {0..*} matches {	-- Pathological interpretation
+												value matches {
+													DV_TEXT[id0.134] 
+												}
+											}
+										}
+									}
+									ELEMENT[id0.129] occurrences matches {0..1} matches {	-- Description
+										value matches {
+											DV_TEXT[id0.135] 
+										}
+									}
+								}
+							}
+							allow_archetype CLUSTER[id98.1] occurrences matches {0..*} matches {	-- Ancillary laboratory test findings
+								include
+									archetype_id/value matches {/.*/}
+							}
+							allow_archetype CLUSTER[id0.130] occurrences matches {0..*} matches {	-- Staging
+								include
+									archetype_id/value matches {/.*/}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["ar-sy"] = <
+			["id0.118"] = <
+				text = <"*Histopathology findings(en)">
+				description = <"*Findings of a broad category of histopathological examination e.g. \"Microscopic findings\".(en)">
+			>
+			["at0.119"] = <
+				text = <"*Histopathology  findings(en)">
+				description = <"*Gneral histopathology findings.(en)">
+			>
+			["at0.120"] = <
+				text = <"*Intra-operative findings(en)">
+				description = <"*Findings related to tissue examined intra-operatively.(en)">
+			>
+			["at0.121"] = <
+				text = <"*Macroscopic findings(en)">
+				description = <"*Findings recorded on examination of a gross specimen.(en)">
+			>
+			["at0.122"] = <
+				text = <"*Microscopic findings(en)">
+				description = <"*Findings recorded after microsopic examination.(en)">
+			>
+			["id0.123"] = <
+				text = <"*Histopathology finding(en)">
+				description = <"*Details of an individual histopathology finding, often related to a specific anatomical location or specimen.(en)">
+			>
+			["id0.124"] = <
+				text = <"*Tissue available(en)">
+				description = <"*True if the tissue is available for examination.(en)">
+			>
+			["id0.125"] = <
+				text = <"*Specimen detail(en)">
+				description = <"*Details of specimen(s) realted to this finding.(en)">
+			>
+			["id0.126"] = <
+				text = <"*Description(en)">
+				description = <"*A narrative description of the histopathology finding.(en)">
+			>
+			["id0.127"] = <
+				text = <"*Structured findings(en)">
+				description = <"*Detailed structured findings.(en)">
+			>
+			["id0.128"] = <
+				text = <"*Pathological interpretation(en)">
+				description = <"*Single word, phrase of brief description representing the interpretation of the histopathology finding. A coded term is preferred.(en)">
+			>
+			["id0.129"] = <
+				text = <"*Description(en)">
+				description = <"*A narrative description of the group of histopathology findings.(en)">
+			>
+			["id0.130"] = <
+				text = <"*Staging(en)">
+				description = <"*Details of pathological staging, particularly for malignancy.(en)">
+			>
+			["id1.1"] = <
+				text = <"*Histopathology Test(en)">
+				description = <"*The findings and interpretation of a histopathology  test performed on patient-related specimens.(en)">
+			>
+			["id98.1"] = <
+				text = <"*Ancillary laboratory test findings(en)">
+				description = <"*Details about additional laboratory results, possibly an individual analyte, a group, panel or battery of multiple results, or a more complex and specific structure.(en)">
+			>
+			["ac0.1"] = <
+				text = <"*Histopathology findings(en) (synthesised)">
+				description = <"*Findings of a broad category of histopathological examination e.g. \"Microscopic findings\".(en) (synthesised)">
+			>
+		>
+		["en"] = <
+			["id0.118"] = <
+				text = <"Histopathology findings">
+				description = <"Findings of a broad category of histopathological examination e.g. \"Microscopic findings\".">
+			>
+			["at0.119"] = <
+				text = <"Histopathology  findings">
+				description = <"General histopathology findings.">
+			>
+			["at0.120"] = <
+				text = <"Intra-operative findings">
+				description = <"Findings related to tissue examined intra-operatively.">
+			>
+			["at0.121"] = <
+				text = <"Macroscopic findings">
+				description = <"Findings recorded on examination of a gross specimen.">
+			>
+			["at0.122"] = <
+				text = <"Microscopic findings">
+				description = <"Findings recorded after microsopic examination.">
+			>
+			["id0.123"] = <
+				text = <"Histopathology finding">
+				description = <"Details of an individual histopathology finding, often related to a specific anatomical location or specimen.">
+			>
+			["id0.124"] = <
+				text = <"Tissue available">
+				description = <"True if the tissue is available for examination.">
+			>
+			["id0.125"] = <
+				text = <"Specimen detail">
+				description = <"Details of specimen(s) realted to this finding.">
+			>
+			["id0.126"] = <
+				text = <"Description">
+				description = <"A narrative description of the histopathology finding.">
+			>
+			["id0.127"] = <
+				text = <"Structured findings">
+				description = <"Detailed structured findings.">
+			>
+			["id0.128"] = <
+				text = <"Pathological interpretation">
+				description = <"Single word, phrase of brief description representing the interpretation of the histopathology finding. A coded term is preferred.">
+			>
+			["id0.129"] = <
+				text = <"Description">
+				description = <"A narrative description of the group of histopathology findings.">
+			>
+			["id0.130"] = <
+				text = <"Staging">
+				description = <"Details of pathological staging, particularly for malignancy.">
+			>
+			["id1.1"] = <
+				text = <"Histopathology test">
+				description = <"The findings and interpretation of a histopathology test performed on patient-related specimens.">
+			>
+			["id98.1"] = <
+				text = <"Ancillary laboratory test findings">
+				description = <"Details about additional laboratory results, possibly an individual analyte, a group, panel or battery of multiple results, or a more complex and specific structure.">
+			>
+			["ac0.1"] = <
+				text = <"Histopathology findings (synthesised)">
+				description = <"Findings of a broad category of histopathological examination e.g. \"Microscopic findings\". (synthesised)">
+			>
+		>
+	>
+	value_sets = <
+		["ac0.1"] = <
+			id = <"ac0.1">
+			members = <"at0.120", "at0.121", "at0.122", "at0.119">
+		>
+	>

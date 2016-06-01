@@ -1,0 +1,255 @@
+archetype (adl_version=2.0.5; rm_release=1.0.2; generated; uid=55633e41-adbb-4197-9289-0072aca61cc1)
+	openEHR-EHR-CLUSTER.oedema.v0.0.1-alpha
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["ar-sy"] = <
+			language = <[ISO_639-1::ar-sy]>
+			author = <
+				["name"] = <"Mona Saleh">
+			>
+		>
+		["ru"] = <
+			language = <[ISO_639-1::ru]>
+			author = <
+				["name"] = <"Andrey Tsaplin">
+				["organisation"] = <"Moscow DGP 99">
+			>
+			accreditation = <"Russian State University">
+		>
+	>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Ocean Informatics">
+		["email"] = <"heather.leslie@oceaninformatics.com">
+		["date"] = <"2007-04-09">
+	>
+	original_namespace = <"org.openehr">
+	original_publisher = <"openEHR Foundation">
+	custodian_namespace = <"org.openehr">
+	custodian_organisation = <"openEHR Foundation">
+	copyright = <"© openEHR Foundation">
+	licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"For recording a narrative description and details about oedema on physical examination.">
+			use = <"Use to record a narrative description of the oedema observed during the physical examination.
+
+This archetype has been designed to be used within the 'Examination findings' SLOT of CLUSTER archetypes for physical examination findings. If used within a CLUSTER.exam_pattern related archetype, the 'Body site' data element and 'Structured body site' SLOT are redundant as the location of oedema will be identified in the Exam CLUSTER. If used within the OBSERVATION.exam archetype or CLUSTERs where the site has not been identified, then 'Body site' and/or 'Structured body site' SLOT will be required.
+
+Use to incorporate the narrative descriptions of clinical findings within existing or legacy clinical systems into an archetyped format, using the 'Clinical Description' data element.">
+			keywords = <"oedema", "swelling">
+			misuse = <"Not to be used for recording the clinical history - use specific OBSERVATION and CLUSTER archetypes. For example OBSERVATION.story and CLUSTER.symptom.">
+		>
+		["ar-sy"] = <
+			language = <[ISO_639-1::ar-sy]>
+			purpose = <"لتسجيل التفاصيل حول الوذمة">
+			use = <"ينبغي أن يدخل كجزء من نموذج يتم فيه إدخال بيانات لتعريف الشخص محل الفحص.">
+			keywords = <"الوذمة", "الانتفاخ">
+			misuse = <"">
+		>
+		["ru"] = <
+			language = <[ISO_639-1::ru]>
+			purpose = <"Для описания отека">
+			use = <"Следует включать в архетип описывающий объект обследования">
+			keywords = <"Отек", "Отечность", "Водянка", "Асцит">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Heather Leslie, Ocean Informatics, Australia (Editor)", "Ian McNicoll, Ocean Informatics, United Kingdom (Editor)">
+	other_details = <
+		["build_uid"] = <"69ac4fd2-b0c0-49e8-aafe-c0beca238594">
+		["MD5-CAM-1.0.1"] = <"6E90916149B444AB6BAF8CDDE86CA1F6">
+	>
+
+definition
+	CLUSTER[id1] matches {	-- Oedema
+		items matches {
+			ELEMENT[id2] occurrences matches {0..1} matches {	-- Clinical description
+				value matches {
+					DV_TEXT[id16] 
+				}
+			}
+			ELEMENT[id12] occurrences matches {0..1} matches {	-- Pitting
+				value matches {
+					DV_BOOLEAN[id17] matches {
+						value matches {True, False}
+					}
+				}
+			}
+			ELEMENT[id7] occurrences matches {0..1} matches {	-- Severity
+				value matches {
+					DV_CODED_TEXT[id18] matches {
+						defining_code matches {[ac1]}		-- Severity (synthesised)
+					}
+				}
+			}
+			ELEMENT[id14] occurrences matches {0..*} matches {	-- Body site name
+				value matches {
+					DV_TEXT[id19] 
+				}
+			}
+			allow_archetype CLUSTER[id15] occurrences matches {0..*} matches {	-- Structured body site
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.anatomical_location(-a-zA-Z0-9_]+)*\.v1|openEHR-EHR-CLUSTER\.anatomical_location_relative(-a-zA-Z0-9_]+)*\.v1/}
+			}
+			ELEMENT[id13] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					DV_TEXT[id20] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Oedema">
+				description = <"Abnormal accumulation of fluid in the skin.">
+			>
+			["id2"] = <
+				text = <"Clinical description">
+				description = <"Narrative description about the oedema.">
+			>
+			["id7"] = <
+				text = <"Severity">
+				description = <"Estimation of the severity of oedema.">
+			>
+			["at8"] = <
+				text = <"Mild (+)">
+				description = <"The oedema is mild.">
+			>
+			["at9"] = <
+				text = <"Moderate (++)">
+				description = <"The oedema is moderate.">
+			>
+			["at10"] = <
+				text = <"Severe (+++)">
+				description = <"The oedema is severe.">
+			>
+			["id12"] = <
+				text = <"Pitting">
+				description = <"Does the oedema pit from finger pressure?">
+			>
+			["id13"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the oedema, not captured in other fields.">
+			>
+			["id14"] = <
+				text = <"Body site name">
+				description = <"Identification of a simple anatomical site where the oedema is located.">
+			>
+			["id15"] = <
+				text = <"Structured body site">
+				description = <"Slot to contain detailed and structured anatomical location details.">
+			>
+			["ac1"] = <
+				text = <"Severity (synthesised)">
+				description = <"Estimation of the severity of oedema. (synthesised)">
+			>
+		>
+		["ar-sy"] = <
+			["id1"] = <
+				text = <"*Oedema(en)">
+				description = <"*Abnormal accumulation of fluid in the skin.(en)">
+			>
+			["id2"] = <
+				text = <"*Clinical description(en)">
+				description = <"*Narrative description about the oedema.(en)">
+			>
+			["id7"] = <
+				text = <"*Severity(en)">
+				description = <"*Estimation of the severity of oedema.(en)">
+			>
+			["at8"] = <
+				text = <"*Mild (+)(en)">
+				description = <"*The oedema is mild.(en)">
+			>
+			["at9"] = <
+				text = <"*Moderate (++)(en)">
+				description = <"*The oedema is moderate.(en)">
+			>
+			["at10"] = <
+				text = <"*Severe (+++)(en)">
+				description = <"*The oedema is severe.(en)">
+			>
+			["id12"] = <
+				text = <"الانطباع">
+				description = <"هل للوذمة انطباع من الضغط بالإصبع">
+			>
+			["id13"] = <
+				text = <"*Comment(en)">
+				description = <"*Additional narrative about the oedema, not captured in other fields.(en)">
+			>
+			["id14"] = <
+				text = <"*Body site name(en)">
+				description = <"*Identification of a simple anatomical site where the oedema is located.(en)">
+			>
+			["id15"] = <
+				text = <"*Structured body site(en)">
+				description = <"*Slot to contain detailed and structured anatomical location details.(en)">
+			>
+			["ac1"] = <
+				text = <"*Severity(en) (synthesised)">
+				description = <"*Estimation of the severity of oedema.(en) (synthesised)">
+			>
+		>
+		["ru"] = <
+			["id1"] = <
+				text = <"*Oedema(en)">
+				description = <"*Abnormal accumulation of fluid in the skin.(en)">
+			>
+			["id2"] = <
+				text = <"*Clinical description(en)">
+				description = <"*Narrative description about the oedema.(en)">
+			>
+			["id7"] = <
+				text = <"*Severity(en)">
+				description = <"*Estimation of the severity of oedema.(en)">
+			>
+			["at8"] = <
+				text = <"*Mild (+)(en)">
+				description = <"*The oedema is mild.(en)">
+			>
+			["at9"] = <
+				text = <"*Moderate (++)(en)">
+				description = <"*The oedema is moderate.(en)">
+			>
+			["at10"] = <
+				text = <"*Severe (+++)(en)">
+				description = <"*The oedema is severe.(en)">
+			>
+			["id12"] = <
+				text = <"Продавливание">
+				description = <"Остаётся ли след после пальпации">
+			>
+			["id13"] = <
+				text = <"*Comment(en)">
+				description = <"*Additional narrative about the oedema, not captured in other fields.(en)">
+			>
+			["id14"] = <
+				text = <"*Body site name(en)">
+				description = <"*Identification of a simple anatomical site where the oedema is located.(en)">
+			>
+			["id15"] = <
+				text = <"*Structured body site(en)">
+				description = <"*Slot to contain detailed and structured anatomical location details.(en)">
+			>
+			["ac1"] = <
+				text = <"*Severity(en) (synthesised)">
+				description = <"*Estimation of the severity of oedema.(en) (synthesised)">
+			>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at8", "at9", "at10">
+		>
+	>

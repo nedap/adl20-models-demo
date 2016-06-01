@@ -1,0 +1,161 @@
+archetype (adl_version=2.0.5; rm_release=1.0.2; generated; uid=9f233ec0-a27d-40e6-8ea5-58cede4bfe01)
+	openEHR-EHR-CLUSTER.exam_eyes.v0.0.1-alpha
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Ocean Informatics">
+		["email"] = <"heather.leslie@oceaninformatics.com">
+		["date"] = <"2013-02-05">
+	>
+	original_namespace = <"org.openehr">
+	original_publisher = <"openEHR Foundation">
+	custodian_namespace = <"org.openehr">
+	custodian_organisation = <"openEHR Foundation">
+	copyright = <"© openEHR Foundation">
+	licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"For recording a narrative description and clinical interpretation of the findings observed during the physical examination of both eyes, including comparative findings between both eyes.">
+			use = <"Use to record a narrative description of the overall findings observed during the physical examination of the eyes. 
+
+Use to provide a framework in which CLUSTER archetypes can be nested in the 'Examination findings' SLOT to record additional structured physical examination findings - for example, CLUSTER.exam_pupils. 
+
+In addition, the CLUSTER.exclusion_exam archetype can be nested within the 'Examination not done' SLOT to optionally record explicit details about the examination not being performed.
+
+Use to incorporate the narrative descriptions of clinical findings within existing or legacy clinical systems into an archetyped format, using the 'Clinical Description' data element.">
+			keywords = <"examination", "physical", "clinical", "findings", "exam", "eye">
+			misuse = <"Not to be used for recording data not related to the physical examination of a single eye  - use CLUSTER.exam_eye for this purpose.
+
+Not to be used to record data about eye testing - use specific purpose-built OBSERVATION archetypes. For example, OBSERVATION .visual_acuity or OBSERVATION.visual_field_measurement.
+
+Not to be used for recording the clinical history - use specific OBSERVATION and CLUSTER archetypes. For example OBSERVATION.story and CLUSTER.symptom.
+
+Not to be used to record stand-alone clinical observations or measurements or test results - use specific OBSERVATION archetypes. For example OBSERVATION.blood_pressure or OBSERVATION.imaging_exam.">
+		>
+	>
+	other_contributors = <"Silje Ljosland Bakke, Bergen Hospital Trust, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "John Tore Valand, Haukeland Universitetssjukehus, Norway", "Heather Leslie, Ocean Informatics, Australia">
+	other_details = <
+		["current_contact"] = <"Heather Leslie, Ocean Informatics<heather.leslie@oceaninformatics.com>">
+		["build_uid"] = <"416c984b-4c9b-4618-9626-1d3c40eaa192">
+		["MD5-CAM-1.0.1"] = <"62302397FFC9D36DD4DF99FAD45E2D8D">
+	>
+
+definition
+	CLUSTER[id1] matches {	-- Examination of both eyes
+		items matches {
+			ELEMENT[id3] occurrences matches {0..1} matches {	-- No abnormality detected
+				name matches {
+					DV_CODED_TEXT[id13] matches {
+						defining_code matches {[ac1]}		-- No abnormality detected (synthesised)
+					}
+				}
+				value matches {
+					DV_BOOLEAN[id14] matches {
+						value matches {True}
+					}
+				}
+			}
+			ELEMENT[id4] occurrences matches {0..1} matches {	-- Clinical description
+				value matches {
+					DV_TEXT[id15] 
+				}
+			}
+			ELEMENT[id12] occurrences matches {0..1} matches {	-- Symmetry?
+				value matches {
+					DV_TEXT[id16] 
+				}
+			}
+			allow_archetype CLUSTER[id5] occurrences matches {0..*} matches {	-- Examination details
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.exam_eye(-a-zA-Z0-9_]+)*\.v0/}
+			}
+			allow_archetype CLUSTER[id6] occurrences matches {0..*} matches {	-- Multimedia representation
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.multimedia(-a-zA-Z0-9_]+)*\.v1/}
+			}
+			ELEMENT[id7] occurrences matches {0..*} matches {	-- Clinical interpretation
+				value matches {
+					DV_TEXT[id17] 
+				}
+			}
+			ELEMENT[id8] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					DV_TEXT[id18] 
+				}
+			}
+			allow_archetype CLUSTER[id9] occurrences matches {0..*} matches {	-- Examination not done
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.exclusion_exam(-a-zA-Z0-9_]+)*\.v1/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Examination of both eyes">
+				description = <"Findings observed during the physical examination of both eyes.">
+			>
+			["id3"] = <
+				text = <"No abnormality detected">
+				description = <"Commonly used statement that no abnormality was detected (NAD) on examination of both eyes.">
+			>
+			["id4"] = <
+				text = <"Clinical description">
+				description = <"Narrative description of the overall findings observed during the physical examination.">
+			>
+			["id5"] = <
+				text = <"Examination details">
+				description = <"Structured details about the physical examination findings.">
+			>
+			["id6"] = <
+				text = <"Multimedia representation">
+				description = <"Digital image, video or diagram representing the physical examination findings.">
+			>
+			["id7"] = <
+				text = <"Clinical interpretation">
+				description = <"Single word, phrase or brief description that represents the clinical meaning and significance of the physical examination findings.">
+			>
+			["id8"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the physical examination findings, not captured in other fields.">
+			>
+			["id9"] = <
+				text = <"Examination not done">
+				description = <"Details to explicitly record that this examination was not performed.">
+			>
+			["id12"] = <
+				text = <"Symmetry?">
+				description = <"Description of the appearance of symmetry of both eyes in comparison to one another.">
+			>
+			["at13"] = <
+				text = <"PERL">
+				description = <"Pupils are equal and reactive to light.">
+			>
+			["at14"] = <
+				text = <"PERLA">
+				description = <"Pupils are equal and reactive to light and accomodation.">
+			>
+			["at15"] = <
+				text = <"No abnormality detected">
+				description = <"Commonly used statement no abnormality was detected (NAD) on examination of both pupils.">
+			>
+			["ac1"] = <
+				text = <"No abnormality detected (synthesised)">
+				description = <"Commonly used statement that no abnormality was detected (NAD) on examination of both eyes. (synthesised)">
+			>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at13", "at14", "at15">
+		>
+	>

@@ -1,0 +1,90 @@
+archetype (adl_version=2.0.5; rm_release=1.0.2; generated; uid=1acecc29-89c0-4733-833d-162b576f40dc)
+	openEHR-EHR-EVALUATION.recommendation.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Ocean Informatics">
+		["email"] = <"heather.leslie@oceaninformatics.com">
+		["date"] = <"2013-02-14">
+	>
+	original_namespace = <"org.openehr">
+	original_publisher = <"openEHR Foundation">
+	custodian_namespace = <"org.openehr">
+	custodian_organisation = <"openEHR Foundation">
+	copyright = <"© openEHR Foundation">
+	licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record a suggestion, advice or proposal for clinical management at a specific time.">
+			use = <"Use to record a suggestion, advice or proposal for clinical management at a specific time.
+
+The intended use case is to support a clinician recording a recommendation, or recommendations, at a specific point-in-time. 
+For example, as a component of the conclusions drawn as part of a clinical consultation.">
+			keywords = <"advice", "proposal", "suggestion">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Bergen Hospital Trust, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Sam Heard, Ocean Informatics, Australia", "Lars Karlsen, DIPS ASA, Norway", "Shinji Kobayashi, Kyoto University, Japan", "Heather Leslie, Ocean Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Andrej Orel, Marand d.o.o., Slovenia">
+	other_details = <
+		["current_contact"] = <"Heather Leslie, Ocean Informatics, heather.leslie@oceaninformatics.com">
+		["build_uid"] = <"a8c4a669-1e9e-4334-af51-e34d99bda674">
+		["MD5-CAM-1.0.1"] = <"876E92FE7EE5857A03C66118CAB0461A">
+	>
+
+definition
+	EVALUATION[id1] matches {	-- Recommendation
+		data matches {
+			ITEM_TREE[id2] matches {
+				items matches {
+					ELEMENT[id3] occurrences matches {0..*} matches {	-- Recommendation
+						value matches {
+							DV_TEXT[id7] 
+						}
+					}
+					ELEMENT[id4] occurrences matches {0..1} matches {	-- Rationale
+						value matches {
+							DV_TEXT[id8] 
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[id5] matches {
+				items matches {
+					allow_archetype CLUSTER[id6] occurrences matches {0..*} matches {	-- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Recommendation">
+				description = <"A suggestion, advice or proposal for clinical management.">
+			>
+			["id3"] = <
+				text = <"Recommendation">
+				description = <"Narrative description of the recommendation.">
+			>
+			["id4"] = <
+				text = <"Rationale">
+				description = <"Justification for the recommendation.">
+			>
+			["id6"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+		>
+	>

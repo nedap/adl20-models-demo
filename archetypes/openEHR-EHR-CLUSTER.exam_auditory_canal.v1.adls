@@ -1,0 +1,586 @@
+archetype (adl_version=2.0.5; rm_release=1.0.2; generated)
+	openEHR-EHR-CLUSTER.exam_auditory_canal.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Ocean Informatics">
+		["email"] = <"heather.leslie@oceaninformatics.com">
+		["date"] = <"2012-09-03">
+	>
+	copyright = <"© National E-Health Transition Authority">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"For recording the findings on physical examination of the external auditory canal by a clinician.">
+			use = <"Use to record the findings on physical examination of the external auditory canal by a clinician.
+
+Designed to be used within the CLUSTER.exam_ears archetype, but may be used within any relevant archetype SLOT related to physical examination.
+
+Please note: this archetype has been designed specifically to reflect current practice within the NT Hearing Health program. It is recognised that this is not currently reflecting a maximal dataset and may need to be extended in future revisions as more specific requirements are identified.">
+			keywords = <"inspection", "ear", "tympanic", "perforation", "drum", "canal", "otoscopic", "exam", "examination", "pneumatic", "otoscopy", "membrane">
+			misuse = <"Not to be used to record findings of the physical examination of other parts of the ear, such as pinna and mastoid region - use other purpose-built archetypes for this purpose.">
+		>
+	>
+	other_contributors = <"Stephen Chu, NEHTA, Australia", "Harvey Coates, UWA, Australia", "Marissa Cookson, Dept of Health, Australia", "Kimberley Crebbin, NT Hearing Services, Australia", "Graeme Crossland, Northern Territory, Australia", "Kathy Currie, Northern Territory Health, Australia", "Jacques de Haan, Alice Springs Hospital, Australia", "Jade Frederiksen, Hearing Health Program, DoH, Australia", "Sam Heard, Ocean Informatics, Australia (Editor)", "Paul Hickey, Hearing Health Program, Australia", "Oliver Hosking, Remote Health NT, Australia", "Amanda Leach, Menzies School of Health Research, Australia", "Anthony Leech, Hearing Health, Australia", "Kerrie Lee, Ngaanyatjarra Health Service, Australia", "Heather Leslie, Ocean Informatics, Australia (Editor)", "Ian McNicoll, Ocean Informatics, United Kingdom", "Hemi Patel, Royal Darwin Hospital, Australia", "Mark Ramjan, NT Department of Health, Australia", "Fiona Wake, RAHC, Australia", "Christine Wigger, Menzies School of Health Research, Australia">
+	other_details = <
+		["references"] = <"Communication with clinical domain experts associated with Australia's Northern Territory Hearing Health Program.
+
+Northern Territory Government, Department of Health: Hearing Health Program ENT Specialist Consultation Form 2011 12 07.
+
+Northern Territory Government, Department of Health: Northern Territory Hearing Health Program Teleotology Nurse Consultation Form 2011 12 07.
+
+Northern Territory Government, Department of Health: Northern Territory Hearing Health Program Audiologist Consultation Form 2011 12 07.
+
+OATSIH:  The Recommendations for Clinical Care Guidelines on the Management of Otitis Media in Aboriginal and Torres Strait Islander Populations (2010). Available at: http://www.health.gov.au/internet/publications/publishing.nsf/Content/CA2578620005D57ACA25792800821BE8?OpenDocument.">
+		["MD5-CAM-1.0.1"] = <"3226F0B564A0B491E8B32BBFC323B024">
+	>
+
+definition
+	CLUSTER[id1] matches {	-- Examination of external auditory canal
+		items matches {
+			ELEMENT[id98] occurrences matches {0..1} matches {	-- Ear examined
+				value matches {
+					DV_CODED_TEXT[id197] matches {
+						defining_code matches {[ac1]}		-- Ear examined (synthesised)
+					}
+				}
+			}
+			ELEMENT[id190] occurrences matches {0..1} matches {	-- No abnormality detected
+				value matches {
+					DV_BOOLEAN[id198] matches {
+						value matches {True}
+					}
+				}
+			}
+			ELEMENT[id2] occurrences matches {0..1} matches {	-- Clinical description
+				value matches {
+					DV_TEXT[id199] 
+				}
+			}
+			ELEMENT[id194] occurrences matches {0..1} matches {	-- Description of wax
+				value matches {
+					DV_TEXT[id200] 
+				}
+			}
+			ELEMENT[id107] occurrences matches {0..1} matches {	-- Consistency of wax
+				value matches {
+					DV_CODED_TEXT[id201] matches {
+						defining_code matches {[ac2]}		-- Consistency of wax (synthesised)
+					}
+				}
+			}
+			ELEMENT[id110] occurrences matches {0..1} matches {	-- State of wax
+				value matches {
+					DV_CODED_TEXT[id202] matches {
+						defining_code matches {[ac3]}		-- State of wax (synthesised)
+					}
+				}
+			}
+			ELEMENT[id140] occurrences matches {0..1} matches {	-- Tenderness of canal
+				value matches {
+					DV_CODED_TEXT[id203] matches {
+						defining_code matches {[ac4]}		-- Tenderness of canal (synthesised)
+					}
+				}
+			}
+			ELEMENT[id133] occurrences matches {0..1} matches {	-- Oedema of canal
+				value matches {
+					DV_CODED_TEXT[id204] matches {
+						defining_code matches {[ac5]}		-- Oedema of canal (synthesised)
+					}
+				}
+			}
+			ELEMENT[id125] occurrences matches {0..1} matches {	-- Erythema of canal
+				value matches {
+					DV_CODED_TEXT[id205] matches {
+						defining_code matches {[ac6]}		-- Erythema of canal (synthesised)
+					}
+				}
+			}
+			ELEMENT[id144] occurrences matches {0..1} matches {	-- Offensive odour
+				value matches {
+					DV_CODED_TEXT[id206] matches {
+						defining_code matches {[ac7]}		-- Offensive odour (synthesised)
+					}
+				}
+			}
+			ELEMENT[id191] occurrences matches {0..1} matches {	-- Discharge presence
+				value matches {
+					DV_CODED_TEXT[id207] matches {
+						defining_code matches {[ac8]}		-- Discharge presence (synthesised)
+					}
+				}
+			}
+			ELEMENT[id158] occurrences matches {0..1} matches {	-- Discharge type
+				value matches {
+					DV_TEXT[id208] 
+				}
+			}
+			ELEMENT[id152] occurrences matches {0..1} matches {	-- Discharge amount
+				value matches {
+					DV_CODED_TEXT[id209] matches {
+						defining_code matches {[ac9]}		-- Discharge amount (synthesised)
+					}
+				}
+			}
+			ELEMENT[id157] occurrences matches {0..1} matches {	-- Discharge description
+				value matches {
+					DV_TEXT[id210] 
+				}
+			}
+			ELEMENT[id160] occurrences matches {0..1} matches {	-- Foreign body presence
+				value matches {
+					DV_CODED_TEXT[id211] matches {
+						defining_code matches {[ac10]}		-- Foreign body presence (synthesised)
+					}
+				}
+			}
+			ELEMENT[id164] occurrences matches {0..1} matches {	-- Foreign body location
+				value matches {
+					DV_CODED_TEXT[id212] matches {
+						defining_code matches {[ac11]}		-- Foreign body location (synthesised)
+					}
+				}
+			}
+			CLUSTER[id65] occurrences matches {0..*} matches {	-- Specific finding
+				items matches {
+					ELEMENT[id113] matches {	-- Finding
+						value matches {
+							DV_CODED_TEXT[id213] matches {
+								defining_code matches {[ac12]}		-- Finding (synthesised)
+							}
+							DV_TEXT[id214] 
+						}
+					}
+					ELEMENT[id148] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							DV_TEXT[id215] 
+						}
+					}
+				}
+			}
+			ELEMENT[id173] occurrences matches {0..*} matches {	-- Multimedia representation
+				value matches {
+					DV_MULTIMEDIA[id216] matches {
+						media_type matches {[ac13]}		-- Multimedia representation (synthesised)
+					}
+				}
+			}
+			ELEMENT[id106] occurrences matches {0..*} matches {	-- Clinical interpretation
+				value matches {
+					DV_TEXT[id217] 
+				}
+			}
+			ELEMENT[id174] occurrences matches {0..*} matches {	-- Comment
+				value matches {
+					DV_TEXT[id218] 
+				}
+			}
+			allow_archetype CLUSTER[id195] occurrences matches {0..*} matches {	-- Exam not done
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.exclusion_exam(-a-zA-Z0-9_]+)*\.v1/}
+			}
+			allow_archetype CLUSTER[id196] occurrences matches {0..*} matches {	-- Tympanic membrane examination
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.exam_tympanic_membrane(-a-zA-Z0-9_]+)*\.v1/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Examination of external auditory canal">
+				description = <"Physical examination of the external auditory canal
+ by a clinician.">
+			>
+			["id2"] = <
+				text = <"Clinical description">
+				description = <"Narrative description of the overall findings observed by a clinician during a physical examination of the external auditory canal.">
+			>
+			["id65"] = <
+				text = <"Specific finding">
+				description = <"Details about specific features noted during the examination of the external auditory canal.">
+			>
+			["id98"] = <
+				text = <"Ear examined">
+				description = <"Identification of the ear under examination.">
+			>
+			["at99"] = <
+				text = <"Left">
+				description = <"The left external auditory canal and tympanic membrane.">
+			>
+			["at100"] = <
+				text = <"Right">
+				description = <"The right external auditory canal and tympanic membrane.">
+			>
+			["id106"] = <
+				text = <"Clinical interpretation">
+				description = <"Single word, phrase or brief description representing a summary of the examination findings.">
+			>
+			["id107"] = <
+				text = <"Consistency of wax">
+				description = <"Description of the type of wax in the external auditory canal.">
+			>
+			["at108"] = <
+				text = <"Hard">
+				description = <"The wax is hard.">
+			>
+			["at109"] = <
+				text = <"Soft">
+				description = <"The wax is soft.">
+			>
+			["id110"] = <
+				text = <"State of wax">
+				description = <"Description of the state of the wax observed in the external auditory canal.">
+			>
+			["at111"] = <
+				text = <"Impacted">
+				description = <"Ear wax is tightly packed in the external auditory canal, such that it may be hard to remove or cause difficulty with hearing.">
+			>
+			["at112"] = <
+				text = <"Not impacted">
+				description = <"Ear wax is not tightly packed in the external auditory canal.">
+			>
+			["id113"] = <
+				text = <"Finding">
+				description = <"Name of the identified finding. ; presence of abnormalities not captured in specific structured data elements, such as presence of canal stenosis, exostoses, mastoid bowl/cavity or tumours.">
+			>
+			["at115"] = <
+				text = <"Polyp">
+				description = <"A polyp is observed within the external auditory canal.">
+			>
+			["id125"] = <
+				text = <"Erythema of canal">
+				description = <"Presence of erythema or redness in the external auditory canal.">
+			>
+			["at126"] = <
+				text = <"Present">
+				description = <"Erythema, or redness, is observed in the wall of the external auditory canal.">
+			>
+			["at127"] = <
+				text = <"Absent">
+				description = <"There is no erythema or redness observed in the wall of the external auditory canal.">
+			>
+			["id133"] = <
+				text = <"Oedema of canal">
+				description = <"Presence of oedema in the external auditory canal.">
+			>
+			["at134"] = <
+				text = <"Present">
+				description = <"Oedema is observed in the external auditory canal wall.">
+			>
+			["at135"] = <
+				text = <"Absent">
+				description = <"Oedema is not observed in the external auditory canal wall.">
+			>
+			["id140"] = <
+				text = <"Tenderness of canal">
+				description = <"Presence of tenderness in the external auditory canal.">
+			>
+			["at141"] = <
+				text = <"Present">
+				description = <"Tenderness is noted in the external auditory canal wall.">
+			>
+			["at142"] = <
+				text = <"Absent">
+				description = <"Tenderness is not noted in the external auditory canal wall.">
+			>
+			["id144"] = <
+				text = <"Offensive odour">
+				description = <"Presence of any offensive odour originating from the external auditory canal.">
+			>
+			["at145"] = <
+				text = <"Absent">
+				description = <"No odour is noted as originating from the external auditory canal.">
+			>
+			["at146"] = <
+				text = <"Present">
+				description = <"An offensive odour is noted as originating from the external auditory canal.">
+			>
+			["id148"] = <
+				text = <"Description">
+				description = <"Narrative description of the identified finding.">
+			>
+			["id152"] = <
+				text = <"Discharge amount">
+				description = <"Amount of discharge observed in the external auditory canal or at the tympanic membrane perforation.">
+			>
+			["at154"] = <
+				text = <"Scant">
+				description = <"A small amount of discharge is observed in the external auditory canal.">
+			>
+			["at155"] = <
+				text = <"Moderate">
+				description = <"A moderate amount of discharge is observed in the external auditory canal.">
+			>
+			["at156"] = <
+				text = <"Profuse">
+				description = <"A profuse amount of discharge is observed in the external auditory canal.">
+			>
+			["id157"] = <
+				text = <"Discharge description">
+				description = <"Narrative description of the discharge observed in the external auditory canal or at the tympanic membrane perforation.">
+			>
+			["id158"] = <
+				text = <"Discharge type">
+				description = <"Type of discharge observed in the external auditory canal or at the tympanic membrane.">
+			>
+			["id160"] = <
+				text = <"Foreign body presence">
+				description = <"Presence of a foreign body in the external auditory canal.">
+			>
+			["at161"] = <
+				text = <"Present">
+				description = <"A foreign body is present in the external auditory canal.">
+			>
+			["at162"] = <
+				text = <"Absent">
+				description = <"A foreign body is present in the external auditory canal.">
+			>
+			["id164"] = <
+				text = <"Foreign body location">
+				description = <"Location of the foreign body within the external auditory canal.">
+			>
+			["at165"] = <
+				text = <"Outer Canal">
+				description = <"The foreign body is located in the outer part of the external auditory canal.">
+			>
+			["at166"] = <
+				text = <"Deep Canal">
+				description = <"The foreign body is located in the deep, inner part of the external auditory canal.">
+			>
+			["id173"] = <
+				text = <"Multimedia representation">
+				description = <"Image or video taken during the physical examination of the external auditory canal and tympanic membrane.">
+			>
+			["id174"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the physical examination findings of the external auditory canal and tympanic membrane, not captured in other fields.">
+			>
+			["at184"] = <
+				text = <"Middle ear">
+				description = <"The foreign body is located within the middle ear cavity.">
+			>
+			["at186"] = <
+				text = <"Fungal spores">
+				description = <"Fungal Spores are observed within the external auditory canal.">
+			>
+			["at187"] = <
+				text = <"Exostosis">
+				description = <"An exostosis is observed within the external auditory canal.">
+			>
+			["at188"] = <
+				text = <"Canal Stenosis">
+				description = <"A narrowing of the auditory canal is observed.">
+			>
+			["at189"] = <
+				text = <"Mastoid Bowl">
+				description = <"A mastoid bowl or cavity is observed within the auditory canal.">
+			>
+			["id190"] = <
+				text = <"No abnormality detected">
+				description = <"Statement that no abnormality was detected (NAD) on examination of the external auditory canal and tympanic membrane.">
+			>
+			["id191"] = <
+				text = <"Discharge presence">
+				description = <"Presence of a discharge observed in the external auditory canal.">
+			>
+			["at192"] = <
+				text = <"Present">
+				description = <"Discharge is observed within the ear canal.">
+			>
+			["at193"] = <
+				text = <"Absent">
+				description = <"Discharge is not observed within the ear canal.">
+			>
+			["id194"] = <
+				text = <"Description of wax">
+				description = <"Narrative description of the wax findings in the external auditory canal.">
+			>
+			["id195"] = <
+				text = <"Exam not done">
+				description = <"Details to explicitly record that this examination was not performed.">
+			>
+			["id196"] = <
+				text = <"Tympanic membrane examination">
+				description = <"Further structured details about examination of the tympanic membrane.">
+			>
+			["at194"] = <
+				text = <"image/cgm">
+				description = <"image/cgm">
+			>
+			["at195"] = <
+				text = <"image/gif">
+				description = <"image/gif">
+			>
+			["at196"] = <
+				text = <"image/png">
+				description = <"image/png">
+			>
+			["at197"] = <
+				text = <"image/tiff">
+				description = <"image/tiff">
+			>
+			["at198"] = <
+				text = <"image/jpeg">
+				description = <"image/jpeg">
+			>
+			["at199"] = <
+				text = <"video/BT656">
+				description = <"video/BT656">
+			>
+			["at200"] = <
+				text = <"video/CelB">
+				description = <"video/CelB">
+			>
+			["at201"] = <
+				text = <"video/H261">
+				description = <"video/H261">
+			>
+			["at202"] = <
+				text = <"video/H263">
+				description = <"video/H263">
+			>
+			["at203"] = <
+				text = <"video/H263-1998">
+				description = <"video/H263-1998">
+			>
+			["at204"] = <
+				text = <"video/H263-2000">
+				description = <"video/H263-2000">
+			>
+			["at205"] = <
+				text = <"video/quicktime">
+				description = <"video/quicktime">
+			>
+			["ac1"] = <
+				text = <"Ear examined (synthesised)">
+				description = <"Identification of the ear under examination. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Consistency of wax (synthesised)">
+				description = <"Description of the type of wax in the external auditory canal. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"State of wax (synthesised)">
+				description = <"Description of the state of the wax observed in the external auditory canal. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Tenderness of canal (synthesised)">
+				description = <"Presence of tenderness in the external auditory canal. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Oedema of canal (synthesised)">
+				description = <"Presence of oedema in the external auditory canal. (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Erythema of canal (synthesised)">
+				description = <"Presence of erythema or redness in the external auditory canal. (synthesised)">
+			>
+			["ac7"] = <
+				text = <"Offensive odour (synthesised)">
+				description = <"Presence of any offensive odour originating from the external auditory canal. (synthesised)">
+			>
+			["ac8"] = <
+				text = <"Discharge presence (synthesised)">
+				description = <"Presence of a discharge observed in the external auditory canal. (synthesised)">
+			>
+			["ac9"] = <
+				text = <"Discharge amount (synthesised)">
+				description = <"Amount of discharge observed in the external auditory canal or at the tympanic membrane perforation. (synthesised)">
+			>
+			["ac10"] = <
+				text = <"Foreign body presence (synthesised)">
+				description = <"Presence of a foreign body in the external auditory canal. (synthesised)">
+			>
+			["ac11"] = <
+				text = <"Foreign body location (synthesised)">
+				description = <"Location of the foreign body within the external auditory canal. (synthesised)">
+			>
+			["ac12"] = <
+				text = <"Finding (synthesised)">
+				description = <"Name of the identified finding. ; presence of abnormalities not captured in specific structured data elements, such as presence of canal stenosis, exostoses, mastoid bowl/cavity or tumours. (synthesised)">
+			>
+			["ac13"] = <
+				text = <"Multimedia representation (synthesised)">
+				description = <"Image or video taken during the physical examination of the external auditory canal and tympanic membrane. (synthesised)">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at194"] = <http://openehr.org/id/425>
+			["at195"] = <http://openehr.org/id/426>
+			["at196"] = <http://openehr.org/id/427>
+			["at197"] = <http://openehr.org/id/428>
+			["at198"] = <http://openehr.org/id/429>
+			["at199"] = <http://openehr.org/id/401>
+			["at200"] = <http://openehr.org/id/402>
+			["at201"] = <http://openehr.org/id/404>
+			["at202"] = <http://openehr.org/id/405>
+			["at203"] = <http://openehr.org/id/406>
+			["at204"] = <http://openehr.org/id/407>
+			["at205"] = <http://openehr.org/id/414>
+		>
+	>
+	value_sets = <
+		["ac8"] = <
+			id = <"ac8">
+			members = <"at192", "at193">
+		>
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at99", "at100">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at109", "at108">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at112", "at111">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at141", "at142">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at134", "at135">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at126", "at127">
+		>
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at146", "at145">
+		>
+		["ac9"] = <
+			id = <"ac9">
+			members = <"at154", "at155", "at156">
+		>
+		["ac10"] = <
+			id = <"ac10">
+			members = <"at161", "at162">
+		>
+		["ac11"] = <
+			id = <"ac11">
+			members = <"at165", "at166", "at184">
+		>
+		["ac12"] = <
+			id = <"ac12">
+			members = <"at115", "at186", "at187", "at188", "at189">
+		>
+		["ac13"] = <
+			id = <"ac13">
+			members = <"at194", "at195", "at196", "at197", "at198", "at199", "at200", "at201", "at202", "at203", "at204", "at205">
+		>
+	>
