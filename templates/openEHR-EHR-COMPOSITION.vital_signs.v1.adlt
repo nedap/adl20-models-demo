@@ -29,7 +29,7 @@ language
             language = <[ISO_639-1::es-ar]>
         >
     >
-    
+
 description
     copyright = <"© openEHR Foundation">
     details = <
@@ -70,7 +70,7 @@ El componente de Contexto contiene un slot innominado que puede ser utilizado pa
             language = <[ISO_639-1::en]>
             misuse = <"">
             purpose = <"Generic container archetype to carry information that needs to be shared with others.">
-            use = <"Use as a generic archetype to carry information that needs to be shared with others.  
+            use = <"Use as a generic archetype to carry information that needs to be shared with others.
 
 Common use cases are: documenting a response to a request for information; the outcome of testing; activities that have been performed; or events that have occurred.
 
@@ -132,11 +132,15 @@ specialize
 
 definition
     SECTION[id1.1] matches {    -- Vital signs
-        items cardinality matches {1..*; unordered} matches {
+        items cardinality matches {3; ordered} matches {
+            allow_archetype OBSERVATION[id2.1] closed
+            allow_archetype EVALUATION[id3.1] closed
             use_archetype OBSERVATION[id2.2, openEHR-EHR-OBSERVATION.ovl-vital_signs-blood_pressure-002.v1.0.0]
             use_archetype OBSERVATION[id2.3, openEHR-EHR-OBSERVATION.ovl-vital_signs-pulse-001.v1.0.0]
             use_archetype OBSERVATION[id2.4, openEHR-EHR-OBSERVATION.ovl-vital_signs-respiration-001.v1.0.0]
+
         }
+
     }
 
 terminology
@@ -174,6 +178,7 @@ definition
         /data[id2]/events matches {
             EVENT[id7] occurrences matches {0..*} matches {
                 /data[id4]/items matches {
+
                     ELEMENT[id5.1] occurrences matches {1} matches {    -- Systolic
                         value matches {
                             DV_QUANTITY[id1054.1] matches {
@@ -221,7 +226,7 @@ definition
                     }
                     ELEMENT[id1053.1] occurrences matches {0} matches {    -- Confounding factors
                         value matches {
-                            DV_TEXT[id1060.1] 
+                            DV_TEXT[id1060.1]
                         }
                     }
                     ELEMENT[id1044.1] occurrences matches {0} matches {    -- Sleep status
@@ -241,14 +246,15 @@ definition
                             }
                         }
                     }
+                    allow_archetype CLUSTER[id1031.1] closed
                 }
             }
-            INTERVAL_EVENT[id1043.1] occurrences matches {0}     -- 24 hour average 
+            INTERVAL_EVENT[id1043.1] occurrences matches {0}     -- 24 hour average
         }
         /protocol[id12]/items matches {
             ELEMENT[id1039.1] occurrences matches {0} matches {    -- Mean Arterial Pressure Formula
                 value matches {
-                    DV_TEXT[id1071.1] 
+                    DV_TEXT[id1071.1]
                 }
             }
         }
@@ -555,7 +561,7 @@ terminology
         ["ar-sy"] = <
             ["id1.1"] = <
                 text = <"ضغط الدم">
-                description = <"قياس موضعي لضغط الدم الشرياني و الذي يحل محل الضغط الشرياني في الدورة الدموية الجهازية. 
+                description = <"قياس موضعي لضغط الدم الشرياني و الذي يحل محل الضغط الشرياني في الدورة الدموية الجهازية.
 و عادة ما يستخدم مصطلح \"ضغط الدم\" لللإشارة إلى قياس ضغط دم الشريان العضُدي في أعلى الذراع.">
             >
             ["id1043.1"] = <
@@ -791,10 +797,11 @@ definition
                     DV_CODED_TEXT[id1078.1] matches {
                         defining_code matches {[ac9]}
                     }
-                    DV_TEXT[id1079.1] 
+                    DV_TEXT[id1079.1]
                 }
             }
         }
+
     }
 
 terminology
@@ -904,10 +911,10 @@ definition
         /data[id2]/events[id3]/state[id23]/items matches {
             ELEMENT[id57.1] occurrences matches {0} matches {    -- Fatores de confundimento
                 value matches {
-                    DV_TEXT[id64.1] 
+                    DV_TEXT[id64.1]
                 }
             }
-            use_archetype CLUSTER[id38.1, openEHR-EHR-CLUSTER.ovl-vital_signs-level_of_exertion-001.v1.0.0]
+            allow_archetype CLUSTER[id38.1] closed
         }
     }
 
@@ -1021,7 +1028,15 @@ specialize
     openEHR-EHR-OBSERVATION.body_weight.v1.0.0
 
 definition
-    OBSERVATION[id1.1]     -- وزن الجسم
+    OBSERVATION[id1.1] matches {
+        protocol matches {
+            ITEM_TREE[id16] matches {
+                items matches {
+                    allow_archetype CLUSTER[id21] closed
+                }
+            }
+        }
+    }
 
 terminology
     term_definitions = <
