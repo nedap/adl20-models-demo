@@ -1,0 +1,9 @@
+{
+  "templates" : [ {
+    "id" : "openEHR-EHR-COMPOSITION.vital_signs.v1.0.0",
+    "rmType" : "COMPOSITION",
+    "name" : "Vital signs report",
+    "path" : "templates/openEHR-EHR-COMPOSITION.vital_signs.v1.adlt",
+    "sha" : "e146bce103cfc61d62d727a0fc9257e3c00aba5e"
+  } ]
+}
