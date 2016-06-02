@@ -133,6 +133,7 @@ definition
     SECTION[id1.1] matches {    -- Vital signs
         items cardinality matches {1..*; unordered} matches {
             use_archetype OBSERVATION[id2.1, openEHR-EHR-OBSERVATION.ovl-vital_signs-blood_pressure-001.v1.0.0]
+            use_archetype OBSERVATION[id2.2, openEHR-EHR-OBSERVATION.ovl-vital_signs-pulse-001.v1.0.0]
         }
     }
 
@@ -244,6 +245,51 @@ terminology
             ["id1.1"] = <
                 text = <"Presión arterial">
                 description = <"Medida de la presión arterial">
+            >
+        >
+    >
+
+
+---------------------------------------------------------------------------------
+template_overlay
+    openEHR-EHR-OBSERVATION.ovl-vital_signs-pulse-001.v1.0.0
+
+specialize
+    openEHR-EHR-OBSERVATION.pulse.v1.0.0
+
+definition
+    OBSERVATION[id1.1]     -- *Pulse/Heart beat(en)
+
+terminology
+    term_definitions = <
+        ["ar-sy"] = <
+            ["id1.1"] = <
+                text = <"*Pulse/Heart beat(en)">
+                description = <"*Record details about the rate and associated attributes for a pulse or heart beat.(en)">
+            >
+        >
+        ["es-co"] = <
+            ["id1.1"] = <
+                text = <"*Pulse/Heart beat(en)">
+                description = <"*Record details about the rate and associated attributes for a pulse or heart beat.(en)">
+            >
+        >
+        ["en"] = <
+            ["id1.1"] = <
+                text = <"Pulse/Heart beat">
+                description = <"Record details about the rate and associated attributes for a pulse or heart beat.">
+            >
+        >
+        ["de"] = <
+            ["id1.1"] = <
+                text = <"*Pulse/Heart beat(en)">
+                description = <"*Record details about the rate and associated attributes for a pulse or heart beat.(en)">
+            >
+        >
+        ["ru"] = <
+            ["id1.1"] = <
+                text = <"*Pulse/Heart beat(en)">
+                description = <"*Record details about the rate and associated attributes for a pulse or heart beat.(en)">
             >
         >
     >
