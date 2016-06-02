@@ -87,7 +87,7 @@ The Sections component has been deliberately left unconstrained to maximise re-u
     other_contributors = <"Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Bergen Hospital Trust, Norway (openEHR Editor)", "Sistine Barretto-Daniels, Ocean Informatics, Australia", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Heath Frankel, Ocean Informatics, Australia", "Sam Heard, Ocean Informatics, Australia", "Lars Karlsen, DIPS ASA, Norway", "Shinji Kobayashi, Kyoto University, Japan", "Heather Leslie, Ocean Informatics, Australia (openEHR Editor)", "Hugh Leslie, Ocean Informatics, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Bjoern Naess, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia">
 
 definition
-    COMPOSITION[id1.1] matches {    -- Report
+    COMPOSITION[id1.1] matches {    -- Vital signs report
         content matches {
             use_archetype SECTION[id0.3, openEHR-EHR-SECTION.ovl-vital_signs-vital_signs-001.v1.0.0]
         }
@@ -109,8 +109,8 @@ terminology
         >
         ["en"] = <
             ["id1.1"] = <
-                text = <"Report">
-                description = <"Document to communicate information to others, commonly in response to a request from another party.">
+                text = <"Vital signs report">
+                description = <"Report various vital signs at once">
             >
         >
         ["es-ar"] = <
@@ -136,6 +136,7 @@ definition
             use_archetype OBSERVATION[id2.2, openEHR-EHR-OBSERVATION.ovl-vital_signs-blood_pressure-002.v1.0.0]
             use_archetype OBSERVATION[id2.3, openEHR-EHR-OBSERVATION.ovl-vital_signs-pulse-001.v1.0.0]
             use_archetype OBSERVATION[id2.4, openEHR-EHR-OBSERVATION.ovl-vital_signs-respiration-001.v1.0.0]
+            use_archetype EVALUATION[id3.1, openEHR-EHR-EVALUATION.ovl-vital_signs-clinical_synopsis-001.v1.0.0]
         }
     }
 
@@ -260,7 +261,50 @@ specialize
     openEHR-EHR-OBSERVATION.blood_pressure.v1.0.0
 
 definition
-    OBSERVATION[id1.1]     -- Blood Pressure
+    OBSERVATION[id1.1] matches {    -- Blood Pressure
+        /data[id2]/events matches {
+            EVENT[id7] occurrences matches {0..*} matches {
+                /data[id4]/items matches {
+                    ELEMENT[id5.1] occurrences matches {1} matches {    -- Systolic
+                        value matches {
+                            DV_QUANTITY[id1054.1] matches {
+                                [units, magnitude, precision] matches {
+                                    [{"mm[Hg]"}, {|0.0..<1000.0|}, {|>=0|}]
+                                }
+                            }
+                        }
+                    }
+                    ELEMENT[id6.1] occurrences matches {1} matches {    -- Diastolic
+                        value matches {
+                            DV_QUANTITY[id1055.1] matches {
+                                [units, magnitude, precision] matches {
+                                    [{"mm[Hg]"}, {|0.0..<1000.0|}, {|>=0|}]
+                                }
+                            }
+                        }
+                    }
+                    ELEMENT[id1007.1] occurrences matches {0} matches {    -- Mean Arterial Pressure
+                        value matches {
+                            DV_QUANTITY[id1056.1] matches {
+                                property matches {[at1055]}
+                                magnitude matches {|0.0..<1000.0|}
+                                precision matches {|0|}
+                                units matches {"mm[Hg]"}
+                            }
+                        }
+                    }
+                }
+            }
+            INTERVAL_EVENT[id1043.1] occurrences matches {0}     -- 24 hour average 
+        }
+        /protocol[id12]/items matches {
+            ELEMENT[id1039.1] occurrences matches {0} matches {    -- Mean Arterial Pressure Formula
+                value matches {
+                    DV_TEXT[id1071.1] 
+                }
+            }
+        }
+    }
 
 terminology
     term_definitions = <
@@ -269,11 +313,51 @@ terminology
                 text = <"Blood Pressure">
                 description = <"The local measurement of arterial blood pressure which is a surrogate for arterial. pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.">
             >
+            ["id1043.1"] = <
+                text = <"24 hour average ">
+                description = <"Estimate of the average blood pressure over a 24 hour period.">
+            >
+            ["id1007.1"] = <
+                text = <"Mean Arterial Pressure">
+                description = <"The average arterial pressure that occurs over the entire course of the heart contraction and relaxation cycle.">
+            >
+            ["id5.1"] = <
+                text = <"Systolic">
+                description = <"Peak systemic arterial blood pressure  - measured in systolic or contraction phase of the heart cycle.">
+            >
+            ["id6.1"] = <
+                text = <"Diastolic">
+                description = <"Minimum systemic arterial blood pressure - measured in the diastolic or relaxation phase of the heart cycle.">
+            >
+            ["id1039.1"] = <
+                text = <"Mean Arterial Pressure Formula">
+                description = <"Formula used to calculate the MAP (if recorded in data).">
+            >
         >
         ["ja"] = <
             ["id1.1"] = <
                 text = <"血圧">
                 description = <"全身に循環する動脈圧を示すものとして，局所で測定される血圧。一般的には「血圧」とは上腕で上腕動脈を測定したものをさすことが多い。">
+            >
+            ["id1043.1"] = <
+                text = <"24時間平均">
+                description = <"24時間にわたる推定平均血圧">
+            >
+            ["id1007.1"] = <
+                text = <"平均同脈圧">
+                description = <"縮拡張サイクルのすべての過程における動脈圧の平均値.">
+            >
+            ["id5.1"] = <
+                text = <"収縮期">
+                description = <"1つ以上の脈の間で最高値を示す全身の動脈圧 - 心機図の収縮期で測定される">
+            >
+            ["id6.1"] = <
+                text = <"拡張期">
+                description = <"1つ以上の脈の間で最低値を示す全身の動脈圧 - 心機図の拡張期で測定される">
+            >
+            ["id1039.1"] = <
+                text = <"平均同脈圧の計算式">
+                description = <"平均同脈圧を計算するために使われた式（もしデータに記録されていれば）">
             >
         >
         ["de"] = <
@@ -281,17 +365,77 @@ terminology
                 text = <"Blutdruck">
                 description = <"Die lokale Messung des arteriellen Blutdrucks als Surrogat für den arteriellen Druck in der systemischen Zirkulation. Häufig wird der Ausdruck 'Blutdruck' zur Bezeichung der Messung des brachialen Ateriendrucks im Oberarm verwendet.">
             >
+            ["id1043.1"] = <
+                text = <"24 Stunden Durchschnitt">
+                description = <"Schätzung des durchschnittlichen Blutdrucks über eine 24-stündigen Zeitraum.">
+            >
+            ["id1007.1"] = <
+                text = <"Mittlerer arterieller Druck">
+                description = <"Der mittlerer arterielle Druck über den gesamten Verlauf der Konktraktions- und Entspannungsphase des Herzens.">
+            >
+            ["id5.1"] = <
+                text = <"Systolisch">
+                description = <"Der höchste arterielle Blutdruck eines Zyklus - gemessen in der systolischen oder Kontraktionsphase des Herzens.">
+            >
+            ["id6.1"] = <
+                text = <"Diastolisch">
+                description = <"Der minimale systemische arterielle Blutdruck eines Zyklus - gemessen in der diastolischen oder Entspannungsphase des Herzens.">
+            >
+            ["id1039.1"] = <
+                text = <"Formel für mittleren arterieller Druck">
+                description = <"Die Formel die ggf. verwendet wurde, um den mittleren arteriellen Druck zu berechnen.">
+            >
         >
         ["zh-cn"] = <
             ["id1.1"] = <
                 text = <"血压">
                 description = <"代表体循环动脉压的动脉血压的局部测量。最为常见的情况就是，采用“血压”一词来表示上臂肱动脉血压的测量。">
             >
+            ["id1043.1"] = <
+                text = <"*24小时均值">
+                description = <"24小时期间血压均值的估计">
+            >
+            ["id1007.1"] = <
+                text = <"平均动脉压">
+                description = <"又称为“平均动脉血压”，指的是在整个心脏收缩与舒张周期过程中出现的动脉压均值（平均动脉压）。">
+            >
+            ["id5.1"] = <
+                text = <"收缩压">
+                description = <"在心动周期的收缩期所测量到的体循环动脉血压峰值。">
+            >
+            ["id6.1"] = <
+                text = <"舒张压">
+                description = <"在心动周期的舒张期所测量到的体循环动脉血压最低值（谷值，最小值）。">
+            >
+            ["id1039.1"] = <
+                text = <"平均动脉压公式">
+                description = <"用于计算平均动脉压（Mean Arterial Pressure，MAP，平均动脉血压）的公式（如果在数据之中加以记录的话）。">
+            >
         >
         ["nl"] = <
             ["id1.1"] = <
                 text = <"Bloeddruk">
                 description = <"De lokale meting van de arteriële bloeddruk, welke surrogaat is voor de arteriële druk in de systemische circulatie. Meest gebruikelijk is dat de term 'bloeddruk'  refereert aan de meting van de bloeddruk van de arterie brachialis in de bovenarm.">
+            >
+            ["id1043.1"] = <
+                text = <"24 uur gemiddelde">
+                description = <"Inschatting van de gemiddelde bloeddruk over een periode van 24 uur">
+            >
+            ["id1007.1"] = <
+                text = <"Gemiddelde arteriële druk">
+                description = <"De gemiddelde bloeddruk gedurende 1 cyclus van samentrekken en ontspannen van het hart.">
+            >
+            ["id5.1"] = <
+                text = <"Systole">
+                description = <"De maximale (piek) systemische arteriele bloeddruk - gemeten in de systolische of samentrekkingsfase van de hartslag">
+            >
+            ["id6.1"] = <
+                text = <"Diastole">
+                description = <"Laagste systemische arteriele bloeddruk -  gemeten in de diastolische of ontspanningsfase van de hartslag">
+            >
+            ["id1039.1"] = <
+                text = <"Gemiddelde arteriële druk formule">
+                description = <"Formule om de MAP (mean arterial pressure=gemiddelde arteriële druk) te berekenen (als deze data opgeslagen wordt).">
             >
         >
         ["ru"] = <
@@ -300,12 +444,52 @@ terminology
                 description = <"Локальное измерение артериального давления, которое является суррогатом артериального давления в системном кровотоке. Как правило, термин относится к давления плечевой артерии на предплечье.
 ">
             >
+            ["id1043.1"] = <
+                text = <"Среднее за 24 часа">
+                description = <"Оценка среднего АД за период в 24 часа.">
+            >
+            ["id1007.1"] = <
+                text = <"Среднего артериального давления крови">
+                description = <"Среднее артериальное давление на всём протяжении цикла сокращения и релаксации сердца.">
+            >
+            ["id5.1"] = <
+                text = <"Систолическое">
+                description = <"Пик системного артериального давления - измеряется в систолиу или в фазу сокращения сердца">
+            >
+            ["id6.1"] = <
+                text = <"Диастолическое">
+                description = <"Минимальное системное артериальное давление - измеряется в диастолу или в фазу релаксации сердца.">
+            >
+            ["id1039.1"] = <
+                text = <"Формула среднего артериального давления">
+                description = <"Формула, используемая для вычисления СрАД (если требуется записывать).">
+            >
         >
         ["fa"] = <
             ["id1.1"] = <
                 text = <"فشار خون">
                 description = <"اندازه گیری موضعی فشار خون وریدی، که جایگزینی برای فشار وریدی در گردش خون کلی است.
 معمولا واژه \"فشار خون\" به اندازه گیری فشار ورید بازویی در روی بازو گفته می شود">
+            >
+            ["id1043.1"] = <
+                text = <"میانگین 24 ساعته">
+                description = <"برآورد میانگین فشار خون در دوره زمانی 24 ساعته">
+            >
+            ["id1007.1"] = <
+                text = <"میانگین فشار وریدی">
+                description = <"متوسط فشار خون وریدی که در کل دوره انقباظ و انبساط قلبی رخ می دهد">
+            >
+            ["id5.1"] = <
+                text = <"سیستولیک">
+                description = <"اوج فشار خون وریدی کلی که در سیستولیک یا فاز انقباضی چرخه گردش خون اندازه گیری می شود ">
+            >
+            ["id6.1"] = <
+                text = <"دیاستولیک">
+                description = <"حداقل فشار خون وریدی کلی که در دیاستولیک یا فاز انبساطی چرخه گردش خون اندازه گیری می شود">
+            >
+            ["id1039.1"] = <
+                text = <"*Mean Arterial Pressure Formula(en)">
+                description = <"*Formula used to calculate the MAP (if recorded in data).(en)">
             >
         >
         ["ar-sy"] = <
@@ -314,11 +498,51 @@ terminology
                 description = <"قياس موضعي لضغط الدم الشرياني و الذي يحل محل الضغط الشرياني في الدورة الدموية الجهازية. 
 و عادة ما يستخدم مصطلح \"ضغط الدم\" لللإشارة إلى قياس ضغط دم الشريان العضُدي في أعلى الذراع.">
             >
+            ["id1043.1"] = <
+                text = <"المتوسط خلال 24 ساعة">
+                description = <"تقدير متوسط ضغط الدم خلال فترة من 24 ساعة">
+            >
+            ["id1007.1"] = <
+                text = <"متوسط الضغط الشرياني">
+                description = <"متوسط الضغط الشرياني الذي يحدث خلال جميع أطوار دورة القلب الواحدة من انقباض و انبساط/ ارتخاء">
+            >
+            ["id5.1"] = <
+                text = <"الانقباضي">
+                description = <"ذروة ضغط الدم الشرياني الجهازي - يتم قياسه في طور الانقباض من دورة القلب">
+            >
+            ["id6.1"] = <
+                text = <"الانبساطي">
+                description = <"الحد الأدني لضغط الدم الشرياني الجهازي - يتم قياسها في طور الانبساط - الارتخاء من دورة القلب">
+            >
+            ["id1039.1"] = <
+                text = <"صيغة متوسط الضغط الشرياني">
+                description = <"الصيغة المستخدمة لقياس متوسط الضغط الشرياني - إذا تم تسجيل بياناتها">
+            >
         >
         ["es-ar"] = <
             ["id1.1"] = <
                 text = <"Presión Arterial">
                 description = <"La medición local de la tensión arterial que deriva de la medida de la presión arterial en la circulación sistémica. Comúnmente el uso de 'presión arterial' se refiere a la medida de la presión de la arteria braquial por encima del pliegue del codo.">
+            >
+            ["id1043.1"] = <
+                text = <"Promedio de 24 horas">
+                description = <"Estimativo de la media de la presión arterial sobre un período de 24 horas">
+            >
+            ["id1007.1"] = <
+                text = <"Presión Arterial Media">
+                description = <"La presión arterial promedio que ocurre durante el ciclo entero de la contracción y relajación del corazon">
+            >
+            ["id5.1"] = <
+                text = <"Sistólica">
+                description = <"Presión arterial sistólica pico - medido en sístole o la fase de contracción del ciclo cardíaco">
+            >
+            ["id6.1"] = <
+                text = <"Diástole">
+                description = <"Presión arterial sistémica mínima - medido durante la diástole o fase de relajación del ciclo cardíaco.">
+            >
+            ["id1039.1"] = <
+                text = <"Fórmula de la Presión Arterial Media (PAM)">
+                description = <"Fórmula usada para calcular la PAM (si se registra en el campo data)">
             >
         >
         ["pt-br"] = <
@@ -326,17 +550,77 @@ terminology
                 text = <"Pressão Arterial">
                 description = <"A medida local da pressão sanguínea arterial, a qual é uma substituta da pressão arterial na circulação arterial sistêmica. Mais comumente o uso do termo pressão arterial se refere à medida da pressão da artéria braquial no antebraço.">
             >
+            ["id1043.1"] = <
+                text = <"Media de 24 horas">
+                description = <"Estimativa da pressão arterial média em um período de 24 horas.">
+            >
+            ["id1007.1"] = <
+                text = <"Pressão arterial Média">
+                description = <"A pressão arterial média que ocorrre ao longo de todo o  ciclo de contração e dilatação do coração.">
+            >
+            ["id5.1"] = <
+                text = <"Sistólica">
+                description = <"Pressão arterial sistêmica máxima - medida na fase sistólica ou de contração do ciclo cardíaco.">
+            >
+            ["id6.1"] = <
+                text = <"Diastólica">
+                description = <"Pressão arterial sistêmica mínima - medida na fase diastólica ou de  dilatação do ciclo cardíaco.">
+            >
+            ["id1039.1"] = <
+                text = <"Fórmula de Pressão Arterial Média">
+                description = <"Fórmula usada para calcular a pressão arterial média (PAM), se registrada em dados.">
+            >
         >
         ["ko"] = <
             ["id1.1"] = <
                 text = <"혈압">
                 description = <"체순환에서 동맥압을 대신하는 동맥혈압의 국소 측정. 보통은 '혈압'이라는 용어의 사용은 상완에서 상완동맥의 측정을 의미함.">
             >
+            ["id1043.1"] = <
+                text = <"24시간 평균">
+                description = <"24시간 동안의 평균 혈압의 추정.">
+            >
+            ["id1007.1"] = <
+                text = <"평균 동맥압">
+                description = <"심장의 수축과 이완 싸이클 전체과정 동안에 발생하는 평균 동맥압.">
+            >
+            ["id5.1"] = <
+                text = <"수축기">
+                description = <"최대 체동맥 혈압 - 심장 싸이클의 수축기에서 측정.">
+            >
+            ["id6.1"] = <
+                text = <"이완기">
+                description = <"최소 체동맥 혈압 - 심장 싸이클의 이완기에서 측정됨.">
+            >
+            ["id1039.1"] = <
+                text = <"*평균 동맥압 공식(ko)">
+                description = <"*(데이터 내에 기록되어 있다면) MAP를 계산하는데 사용되는 공식.(ko)">
+            >
         >
         ["es"] = <
             ["id1.1"] = <
                 text = <"Presión arterial">
                 description = <"Medida de la presión arterial">
+            >
+            ["id1043.1"] = <
+                text = <"promedio en 24 horas">
+                description = <"Estimación de la presión arterial promedio dentro de las 24 horas">
+            >
+            ["id1007.1"] = <
+                text = <"Presión arterial media">
+                description = <"Promedio del a presión arterial que ocurre en el ciclo completo de contracción y relajación del corazón.">
+            >
+            ["id5.1"] = <
+                text = <"Sistólica">
+                description = <"Presión arterial sistólica">
+            >
+            ["id6.1"] = <
+                text = <"Diastólica">
+                description = <"Presión arterial diastólica">
+            >
+            ["id1039.1"] = <
+                text = <"Fórmula de la presión arterial media">
+                description = <"Fórmula utilizada para medir la presión arterial media">
             >
         >
     >
@@ -350,7 +634,11 @@ specialize
     openEHR-EHR-OBSERVATION.pulse.v1.0.0
 
 definition
-    OBSERVATION[id1.1]     -- *Pulse/Heart beat(en)
+    OBSERVATION[id1.1] matches {    -- *Pulse/Heart beat(en)
+        /data[id3]/events matches {
+            INTERVAL_EVENT[id1037.1] occurrences matches {0}     -- *Maximum(en)
+        }
+    }
 
 terminology
     term_definitions = <
@@ -359,11 +647,19 @@ terminology
                 text = <"*Pulse/Heart beat(en)">
                 description = <"*Record details about the rate and associated attributes for a pulse or heart beat.(en)">
             >
+            ["id1037.1"] = <
+                text = <"*Maximum(en)">
+                description = <"*Maximum pulse rate or heart rate observed during a period of exertion.(en)">
+            >
         >
         ["es-co"] = <
             ["id1.1"] = <
                 text = <"*Pulse/Heart beat(en)">
                 description = <"*Record details about the rate and associated attributes for a pulse or heart beat.(en)">
+            >
+            ["id1037.1"] = <
+                text = <"*Maximum(en)">
+                description = <"*Maximum pulse rate or heart rate observed during a period of exertion.(en)">
             >
         >
         ["en"] = <
@@ -371,17 +667,29 @@ terminology
                 text = <"Pulse/Heart beat">
                 description = <"Record details about the rate and associated attributes for a pulse or heart beat.">
             >
+            ["id1037.1"] = <
+                text = <"Maximum">
+                description = <"Maximum pulse rate or heart rate observed during a period of exertion.">
+            >
         >
         ["de"] = <
             ["id1.1"] = <
                 text = <"*Pulse/Heart beat(en)">
                 description = <"*Record details about the rate and associated attributes for a pulse or heart beat.(en)">
             >
+            ["id1037.1"] = <
+                text = <"*Maximum(en)">
+                description = <"*Maximum pulse rate or heart rate observed during a period of exertion.(en)">
+            >
         >
         ["ru"] = <
             ["id1.1"] = <
                 text = <"*Pulse/Heart beat(en)">
                 description = <"*Record details about the rate and associated attributes for a pulse or heart beat.(en)">
+            >
+            ["id1037.1"] = <
+                text = <"*Maximum(en)">
+                description = <"*Maximum pulse rate or heart rate observed during a period of exertion.(en)">
             >
         >
     >
@@ -395,7 +703,11 @@ specialize
     openEHR-EHR-OBSERVATION.respiration.v1.0.0
 
 definition
-    OBSERVATION[id1.1]     -- Respirações
+    OBSERVATION[id1.1] matches {    -- Respirações
+        /data[id2]/events[id3]/state[id23]/items matches {
+            use_archetype CLUSTER[id38.1, openEHR-EHR-CLUSTER.ovl-vital_signs-level_of_exertion-001.v1.0.0]
+        }
+    }
 
 terminology
     term_definitions = <
@@ -439,6 +751,90 @@ terminology
             ["id1.1"] = <
                 text = <"Ademhaling">
                 description = <"Observaties van de spontane ademhaling, zoals deze meestal geregistreerd worden als onderdeel van de observatie van de vitale functies">
+            >
+        >
+    >
+
+
+---------------------------------------------------------------------------------
+template_overlay
+    openEHR-EHR-EVALUATION.ovl-vital_signs-clinical_synopsis-001.v1.0.0
+
+specialize
+    openEHR-EHR-EVALUATION.clinical_synopsis.v1.0.0
+
+definition
+    EVALUATION[id1.1]     -- Clinical Synopsis
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1.1"] = <
+                text = <"Clinical Synopsis">
+                description = <"Narrative summary or overview about a patient, specifically from the perspective of a healthcare provider, and with or without associated interpretations.">
+            >
+        >
+        ["fa"] = <
+            ["id1.1"] = <
+                text = <"خلاصه بالینی">
+                description = <"خلاصه یا مروری تشریحی دربازه بیمار بویژه از نظز ارایه کننده مراقبت بهداشتی با یا بدون تفسیرهای مربوطه ">
+            >
+        >
+        ["ar-sy"] = <
+            ["id1.1"] = <
+                text = <"المختصر السريري">
+                description = <"ملخص بالرواية أو نظرة عامة عن المريض, خاصة من وجهة نظر مقدم الخدمة الصحية, مع إرفاق أو عدم إرفاق تفسيرات ">
+            >
+        >
+        ["de"] = <
+            ["id1.1"] = <
+                text = <"Klinische Synopsis">
+                description = <"Zusammenfassung oder Übersicht einer Patientengeschichte, speziell aus der Sicht eines Gesundheitsdienstleisters, evtl. mit dazugehörigen Interpretationen.">
+            >
+        >
+        ["es-ar"] = <
+            ["id1.1"] = <
+                text = <"Sinopsis Clínica">
+                description = <"Sumario narrativo o visión global acerca de un paciente, específicamente desde la perspectiva de un profesional del cuidado de la salud, con o sin interpretaciones asociadas.">
+            >
+        >
+        ["pt-br"] = <
+            ["id1.1"] = <
+                text = <"Sinopse Clínica">
+                description = <"Resumo narrativo ou visão geral sobre um paciente, especificamente a partir da perspectiva de um profissional de saúde, e com ou sem interpretações associadas.">
+            >
+        >
+        ["zh-cn"] = <
+            ["id1.1"] = <
+                text = <"临床提要">
+                description = <"从医疗保健服务提供着的角度，手工综合并记录关于患者的叙述型摘要或概述，且带有或没有相关联的解释。">
+            >
+        >
+    >
+
+
+---------------------------------------------------------------------------------
+template_overlay
+    openEHR-EHR-CLUSTER.ovl-vital_signs-level_of_exertion-001.v1.0.0
+
+specialize
+    openEHR-EHR-CLUSTER.level_of_exertion.v1.0.0
+
+definition
+    CLUSTER[id1.1]     -- Level of exertion
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1.1"] = <
+                text = <"Level of exertion">
+                description = <"Record information about level of exertion.">
+            >
+        >
+        ["ar-sy"] = <
+            ["id1.1"] = <
+                text = <"مستوى المجهود">
+                description = <"لتسجيل معلومات حول مستوى المجهود">
             >
         >
     >
