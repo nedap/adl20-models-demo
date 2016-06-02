@@ -90,6 +90,7 @@ definition
     COMPOSITION[id1.1] matches {    -- Vital signs report
         content matches {
             use_archetype SECTION[id0.3, openEHR-EHR-SECTION.ovl-vital_signs-vital_signs-001.v1.0.0]
+            use_archetype OBSERVATION[id0.4, openEHR-EHR-OBSERVATION.ovl-vital_signs-body_weight-001.v1.0.0]
         }
     }
 
@@ -835,6 +836,81 @@ terminology
             ["id1.1"] = <
                 text = <"مستوى المجهود">
                 description = <"لتسجيل معلومات حول مستوى المجهود">
+            >
+        >
+    >
+
+
+---------------------------------------------------------------------------------
+template_overlay
+    openEHR-EHR-OBSERVATION.ovl-vital_signs-body_weight-001.v1.0.0
+
+specialize
+    openEHR-EHR-OBSERVATION.body_weight.v1.0.0
+
+definition
+    OBSERVATION[id1.1]     -- وزن الجسم
+
+terminology
+    term_definitions = <
+        ["ar-sy"] = <
+            ["id1.1"] = <
+                text = <"وزن الجسم">
+                description = <"قياس وزن الجسم للشخص">
+            >
+        >
+        ["ru"] = <
+            ["id1.1"] = <
+                text = <"Масса тела">
+                description = <"Измерение актуальной массы тела человека.">
+            >
+        >
+        ["ja"] = <
+            ["id1.1"] = <
+                text = <"体重">
+                description = <"個人の体重を測定したもの">
+            >
+        >
+        ["fa"] = <
+            ["id1.1"] = <
+                text = <"وزن بدن">
+                description = <"اندازه گیری وزن بدن فرد">
+            >
+        >
+        ["zh-cn"] = <
+            ["id1.1"] = <
+                text = <"体重">
+                description = <"个人体重（身体重量）的测量。">
+            >
+        >
+        ["pt-br"] = <
+            ["id1.1"] = <
+                text = <"Peso corporal">
+                description = <"A medição do peso corporal de um indivíduo.">
+            >
+        >
+        ["en"] = <
+            ["id1.1"] = <
+                text = <"Body weight">
+                description = <"Measurement of the body weight of an individual.">
+            >
+        >
+        ["de"] = <
+            ["id1.1"] = <
+                text = <"Körpergewicht">
+                description = <"Messung des Körpergewichts eines Individuums.">
+            >
+        >
+        ["nl"] = <
+            ["id1.1"] = <
+                text = <"Lichaamsgewicht">
+                description = <"Meting van het lichaamsgewicht van een individu.">
+            >
+        >
+        ["es"] = <
+            ["id1.1"] = <
+                text = <"Peso corporal">
+                description = <"Medición del peso corporal de un individuo.">
             >
         >
     >
