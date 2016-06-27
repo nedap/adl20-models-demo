@@ -2831,7 +2831,7 @@
     "rmType" : "OBSERVATION",
     "name" : "Delirium Observatie Screening",
     "path" : "archetypes/openEHR-EHR-OBSERVATION.delirium_observatie_screening.v1.adls",
-    "sha" : "09a0e794d45e3e6e6b3c0c8427560806645cdcf1",
+    "sha" : "2dfe272a74519ab5634b8e781d1debef4aa55eda",
     "languages" : [ "nl" ]
   } ]
 }
