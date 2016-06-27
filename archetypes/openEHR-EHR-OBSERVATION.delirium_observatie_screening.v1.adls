@@ -34,7 +34,11 @@ definition
                                     }
                                     CLUSTER[id7] matches {    -- Meting
                                         items matches {
-                                            CLUSTER[id12] 
+                                            CLUSTER[id12] matches {
+                                                items matches {
+                                                    ELEMENT[id13]     -- Zakt weg tijdens gesprek of bezigheden
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -68,6 +72,10 @@ terminology
             ["id8"] = <
                 text = <"Naam beoordelaar">
                 description = <"Naam beoordelaar">
+            >
+            ["id13"] = <
+                text = <"Zakt weg tijdens gesprek of bezigheden">
+                description = <"Zakt weg tijdens gesprek of bezigheden">
             >
         >
     >
