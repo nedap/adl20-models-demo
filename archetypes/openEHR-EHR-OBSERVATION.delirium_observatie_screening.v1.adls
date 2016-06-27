@@ -1,0 +1,70 @@
+archetype (adl_version=2.0.4; rm_release=1.0.2)
+    openEHR-EHR-OBSERVATION.delirium_observatie_screening.v1.0.0
+
+language
+    original_language = <[ISO_639-1::nl]>
+    
+description
+    copyright = <"">
+    details = <
+        ["nl"] = <
+            language = <[ISO_639-1::nl]>
+            purpose = <"">
+        >
+    >
+    lifecycle_state = <"unmanaged">
+
+definition
+    OBSERVATION[id1] matches {    -- Delirium Observatie Screening
+        data matches {
+            HISTORY[id2] matches {
+                events matches {
+                    EVENT[id3] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items matches {
+                                    CLUSTER[id6] matches {    -- Algemene gegevens
+                                        items matches {
+                                            ELEMENT[id8] matches {    -- Naam beoordelaar
+                                                value matches {
+                                                    DV_TEXT[id9] 
+                                                }
+                                            }
+                                        }
+                                    }
+                                    CLUSTER[id7]     -- Meting
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nl"] = <
+            ["id1"] = <
+                text = <"Delirium Observatie Screening">
+                description = <"Delirium Observatie Screening">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Any event">
+            >
+            ["id6"] = <
+                text = <"Algemene gegevens">
+                description = <"Algemene gegevens">
+            >
+            ["id7"] = <
+                text = <"Meting">
+                description = <"Meting">
+            >
+            ["id8"] = <
+                text = <"Naam beoordelaar">
+                description = <"Naam beoordelaar">
+            >
+        >
+    >
+
