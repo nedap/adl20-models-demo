@@ -19,24 +19,32 @@ definition
         data matches {
             HISTORY[id2] matches {
                 events matches {
-                    EVENT[id3] matches {    -- Any event
+                    EVENT[id2] matches {    -- Any event
                         data matches {
                             ITEM_TREE[id4] matches {
                                 items matches {
-                                    CLUSTER[id6] matches {    -- Algemene gegevens
+                                    CLUSTER[id3] matches {    -- Algemene gegevens
                                         items matches {
-                                            ELEMENT[id8] matches {    -- Naam beoordelaar
+                                            ELEMENT[id5] matches {    -- Naam beoordelaar
                                                 value matches {
                                                     DV_TEXT[id9] 
                                                 }
                                             }
                                         }
                                     }
-                                    CLUSTER[id7] matches {    -- Meting
+                                    CLUSTER[id4] matches {    -- Meting
                                         items matches {
                                             CLUSTER[id12] matches {
                                                 items matches {
-                                                    ELEMENT[id13]     -- Zakt weg tijdens gesprek of bezigheden
+                                                    ELEMENT[id6] occurrences matches {0..1} matches {    -- Zakt weg tijdens gesprek of bezigheden
+                                                        value matches {
+                                                            DV_ORDINAL[id155] matches {
+                                                                [value, symbol] matches {
+                                                                    [{0}, {[at1]}]
+                                                                }
+                                                            }
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
@@ -57,25 +65,29 @@ terminology
                 text = <"Delirium Observatie Screening">
                 description = <"Delirium Observatie Screening">
             >
-            ["id3"] = <
+            ["id2"] = <
                 text = <"Any event">
                 description = <"Any event">
             >
-            ["id6"] = <
+            ["id3"] = <
                 text = <"Algemene gegevens">
                 description = <"Algemene gegevens">
             >
-            ["id7"] = <
+            ["id4"] = <
                 text = <"Meting">
                 description = <"Meting">
             >
-            ["id8"] = <
+            ["id5"] = <
                 text = <"Naam beoordelaar">
                 description = <"Naam beoordelaar">
             >
-            ["id13"] = <
+            ["id6"] = <
                 text = <"Zakt weg tijdens gesprek of bezigheden">
                 description = <"Zakt weg tijdens gesprek of bezigheden">
+            >
+            ["at1"] = <
+                text = <"Nooit">
+                description = <"Nooit">
             >
         >
     >
