@@ -57,6 +57,78 @@ definition
                                                             }
                                                         }
                                                     }
+                                                    ELEMENT[id19] matches {    -- Maakt vraag of antwoord niet af
+                                                        value matches {
+                                                            DV_CODED_TEXT[id20] matches {
+                                                                defining_code matches {[ac1]}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id21] matches {    -- Geeft antwoorden die niet passen bij de vraag
+                                                        value matches {
+                                                            DV_CODED_TEXT[id22] matches {
+                                                                defining_code matches {[ac1]}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id23] matches {    -- Reageert traag op opdrachten
+                                                        value matches {
+                                                            DV_CODED_TEXT[id24] matches {
+                                                                defining_code matches {[ac1]}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id25] matches {    -- Denkt ergens ander te zijn
+                                                        value matches {
+                                                            DV_CODED_TEXT[id26] matches {
+                                                                defining_code matches {[ac1]}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id27] matches {    -- Beseft wel welk dagdeel het is
+                                                        value matches {
+                                                            DV_CODED_TEXT[id28] matches {
+                                                                defining_code matches {[ac1]}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id29] matches {    -- Herinnert zich recente gebeurtenis
+                                                        value matches {
+                                                            DV_CODED_TEXT[id30] matches {
+                                                                defining_code matches {[ac1]}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id31] matches {    -- Is plukkerig, rommelig, rusteloos
+                                                        value matches {
+                                                            DV_CODED_TEXT[id32] matches {
+                                                                defining_code matches {[ac1]}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id33] matches {    -- Trekt aan infuus, sonde, catheter enz.
+                                                        value matches {
+                                                            DV_CODED_TEXT[id34] matches {
+                                                                defining_code matches {[ac1]}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id35] matches {    -- Is snel of plotseling geëmotioneerd
+                                                        value matches {
+                                                            DV_CODED_TEXT[id36] matches {
+                                                                defining_code matches {[ac1]}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id37] matches {    -- Ziet/hoort dingen die er niet zijn
+                                                        value matches {
+                                                            DV_CODED_TEXT[id38] matches {
+                                                                defining_code matches {[ac1]}
+                                                            }
+                                                        }
+                                                    }
+
+
                                                 }
                                             }
                                         }
@@ -124,6 +196,46 @@ terminology
             ["id17"] = <
                 text = <"Heeft aandacht voor gesprek of handeling">
                 description = <"Heeft aandacht voor gesprek of handeling">
+            >
+            ["id19"] = <
+                text =  <"Maakt vraag of antwoord niet af">
+                description = <"Maakt vraag of antwoord niet af">
+            >
+            ["id21"] = <
+                text =  <"Geeft antwoorden die niet passen bij de vraag">
+                description = <"Geeft antwoorden die niet passen bij de vraag">
+            >
+            ["id23"] = <
+                text =  <"Reageert traag op opdrachten">
+                description = <"Reageert traag op opdrachten">
+            >
+            ["id25"] = <
+                text =  <"Denkt ergens ander te zijn">
+                description = <"Denkt ergens ander te zijn">
+            >
+            ["id27"] = <
+                text =  <"Beseft wel welk dagdeel het is">
+                description = <"Beseft wel welk dagdeel het is">
+            >
+            ["id29"] = <
+                text =  <"Herinnert zich recente gebeurtenis">
+                description = <"Herinnert zich recente gebeurtenis">
+            >
+            ["id31"] = <
+                text =  <"Is plukkerig, rommelig, rusteloos">
+                description = <"Is plukkerig, rommelig, rusteloos">
+            >
+            ["id33"] = <
+                text =  <"Trekt aan infuus, sonde, catheter enz.">
+                description = <"Trekt aan infuus, sonde, catheter enz.">
+            >
+            ["id35"] = <
+                text =  <"Is snel of plotseling geëmotioneerd">
+                description = <"Is snel of plotseling geëmotioneerd">
+            >
+            ["id37"] = <
+                text =  <"Ziet/hoort dingen die er niet zijn">
+                description = <"Ziet/hoort dingen die er niet zijn">
             >
         >
     >
