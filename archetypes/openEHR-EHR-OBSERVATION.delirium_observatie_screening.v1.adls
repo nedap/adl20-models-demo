@@ -32,7 +32,35 @@ definition
                                             }
                                         }
                                     }
-                                    CLUSTER[id7]     -- Meting
+                                    CLUSTER[id7] matches {    -- Meting
+                                        items matches {
+                                            CLUSTER[id12] matches {    -- Dagdienst
+                                                items matches {
+                                                    ELEMENT[id13] matches {    -- Zakt weg tijdens gesprek of bezigheden
+                                                        value matches {
+                                                            DV_CODED_TEXT[id14] matches {
+                                                                defining_code matches {[ac1]}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id15] matches {    -- Is snel afgeleid door prikkels uit de omgeving
+                                                        value matches {
+                                                            DV_CODED_TEXT[id16] matches {
+                                                                defining_code matches {[ac1]}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id17] matches {    -- Heeft aandacht voor gesprek of handeling
+                                                        value matches {
+                                                            DV_CODED_TEXT[id18] matches {
+                                                                defining_code matches {[ac1]}
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -65,6 +93,44 @@ terminology
                 text = <"Naam beoordelaar">
                 description = <"Naam beoordelaar">
             >
+            ["at1"] = <
+                text = <"Nooit">
+                description = <"Nooit">
+            >
+            ["at2"] = <
+                text = <"Soms - Altijd">
+                description = <"Soms - Altijd">
+            >
+            ["at3"] = <
+                text = <"Weet niet">
+                description = <"Weet niet">
+            >
+            ["ac1"] = <
+                text = <"Occurrence">
+                description = <"Occurrence">
+            >
+            ["id12"] = <
+                text = <"Dagdienst">
+                description = <"Dagdienst">
+            >
+            ["id13"] = <
+                text = <"Zakt weg tijdens gesprek of bezigheden">
+                description = <"Zakt weg tijdens gesprek of bezigheden">
+            >
+            ["id15"] = <
+                text = <"Is snel afgeleid door prikkels uit de omgeving">
+                description = <"Is snel afgeleid door prikkels uit de omgeving">
+            >
+            ["id17"] = <
+                text = <"Heeft aandacht voor gesprek of handeling">
+                description = <"Heeft aandacht voor gesprek of handeling">
+            >
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at1", "at2", "at3">
         >
     >
 
