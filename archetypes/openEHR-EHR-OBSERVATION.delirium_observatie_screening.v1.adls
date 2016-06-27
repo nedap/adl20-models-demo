@@ -34,7 +34,7 @@ definition
                                     }
                                     CLUSTER[id7] matches {    -- Meting
                                         items matches {
-                                            CLUSTER[id12]     -- Dagdienst
+                                            CLUSTER[id12] 
                                         }
                                     }
                                 }
