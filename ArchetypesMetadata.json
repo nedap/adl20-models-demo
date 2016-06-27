@@ -2824,7 +2824,7 @@
     "rmType" : "SECTION",
     "name" : "Vital signs",
     "path" : "archetypes/openEHR-EHR-SECTION.vital_signs.v1.adls",
-    "sha" : "654ff0c4838ea4300766193ccd94d1e92115ff19",
+    "sha" : "a6f8bef34476e497a525b1627f4091cebf0bdab9",
     "languages" : [ "en", "de", "ko" ]
   } ]
 }
