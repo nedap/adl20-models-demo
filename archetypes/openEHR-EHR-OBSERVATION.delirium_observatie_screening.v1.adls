@@ -40,7 +40,8 @@ definition
                                                         value matches {
                                                             DV_ORDINAL[id155] matches {
                                                                 [value, symbol] matches {
-                                                                    [{0}, {[at1]}]
+                                                                    [{0}, {[at1]}],
+                                                                    [{1}, {[at2]}]
                                                                 }
                                                             }
                                                         }
@@ -88,6 +89,10 @@ terminology
             ["at1"] = <
                 text = <"Nooit">
                 description = <"Nooit">
+            >
+            ["at2"] = <
+                text = <"Soms - altijd">
+                description = <"Soms - altijd">
             >
         >
     >
