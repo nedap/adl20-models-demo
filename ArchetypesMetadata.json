@@ -2826,5 +2826,12 @@
     "path" : "archetypes/openEHR-EHR-SECTION.vital_signs.v1.adls",
     "sha" : "a6f8bef34476e497a525b1627f4091cebf0bdab9",
     "languages" : [ "en", "de", "ko" ]
+  }, {
+    "id" : "openEHR-EHR-OBSERVATION.delirium_observatie_screening.v1.0.0",
+    "rmType" : "OBSERVATION",
+    "name" : "Delirium Observatie Screening",
+    "path" : "archetypes/openEHR-EHR-OBSERVATION.delirium_observatie_screening.v1.adls",
+    "sha" : "09a0e794d45e3e6e6b3c0c8427560806645cdcf1",
+    "languages" : [ "nl" ]
   } ]
 }
