@@ -1,0 +1,45 @@
+archetype (adl_version=2.0.4; rm_release=1.0.2)
+    openEHR-EHR-OBSERVATION.delirium_observatie_schaal.v1.0.0
+
+language
+    original_language = <[ISO_639-1::nl]>
+    
+description
+    copyright = <"">
+    details = <
+        ["nl"] = <
+            language = <[ISO_639-1::nl]>
+            purpose = <"">
+        >
+    >
+    lifecycle_state = <"unmanaged">
+
+definition
+    OBSERVATION[id1] matches {    -- delirium_observatie_schaal
+        data matches {
+            HISTORY[id2] matches {
+                events matches {
+                    POINT_EVENT[id6] matches {
+                        data matches {
+                            ITEM_STRUCTURE[id9]     -- DOS-metingen
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nl"] = <
+            ["id1"] = <
+                text = <"delirium_observatie_schaal">
+                description = <"delirium_observatie_schaal">
+            >
+            ["id9"] = <
+                text = <"DOS-metingen">
+                description = <"DOS-metingen">
+            >
+        >
+    >
+
